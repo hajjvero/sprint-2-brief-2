@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Application web interactive permettant aux utilisateurs de créer, personnaliser et télécharger leur CV à partir d'un formulaire à étapes dynamique.">
+    <meta name="description"
+          content="Application web interactive permettant aux utilisateurs de créer, personnaliser et téléchargerleur CV à partir d'un formulaire à étapes dynamique.">
     <meta name="keywords" content="CV, générateur, formulaire dynamique, téléchargement CV, création CV">
     <meta name="author" content="Hamza HAJJAJI">
-    <title>Générateur de CV Dynamique</title>
+    <title>You CV</title>
 
     <!-- preload -->
-    <link rel="preload" href="assets/font/Roboto-Regular.ttf" as="font" type="font/ttf">
     <link rel="preload" href="assets/style/app.css" as="style">
     <link rel="preload" href="assets/script/app.js" as="script">
 
@@ -18,8 +18,247 @@
 
     <!-- javascript -->
     <script src="assets/script/app.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 </head>
 <body>
+<header>
+    <nav class="border-gray-200 bg-gray-50 dark:bg-gray-800 dark:border-gray-700">
+        <div class="max-w-8/12 flex flex-wrap items-center justify-between mx-auto py-3">
+            <a href="#" class="flex items-center space-x-3 rtl:space-x-reverse">
+                <img src="https://flowbite.com/docs/images/logo.svg" class="h-8" alt="Flowbite Logo"/>
+                <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">You CV</span>
+            </a>
 
+            <div>
+                <a href="#"
+                   class="inline-flex items-center justify-center p-2 w-10 h-10 text-white text-sm rounded-lg hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:hover:bg-gray-700 dark:focus:ring-gray-600">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640"><path fill="#ffffff" d="M240 112L128 112C119.2 112 112 119.2 112 128L112 512C112 520.8 119.2 528 128 528L208 528L208 576L128 576C92.7 576 64 547.3 64 512L64 128C64 92.7 92.7 64 128 64L261.5 64C278.5 64 294.8 70.7 306.8 82.7L429.3 205.3C441.3 217.3 448 233.6 448 250.6L448 400.1L400 400.1L400 272.1L312 272.1C272.2 272.1 240 239.9 240 200.1L240 112.1zM380.1 224L288 131.9L288 200C288 213.3 298.7 224 312 224L380.1 224zM272 444L304 444C337.1 444 364 470.9 364 504C364 537.1 337.1 564 304 564L292 564L292 592C292 603 283 612 272 612C261 612 252 603 252 592L252 464C252 453 261 444 272 444zM304 524C315 524 324 515 324 504C324 493 315 484 304 484L292 484L292 524L304 524zM400 444L432 444C460.7 444 484 467.3 484 496L484 560C484 588.7 460.7 612 432 612L400 612C389 612 380 603 380 592L380 464C380 453 389 444 400 444zM432 572C438.6 572 444 566.6 444 560L444 496C444 489.4 438.6 484 432 484L420 484L420 572L432 572zM508 464C508 453 517 444 528 444L576 444C587 444 596 453 596 464C596 475 587 484 576 484L548 484L548 508L576 508C587 508 596 517 596 528C596 539 587 548 576 548L548 548L548 592C548 603 539 612 528 612C517 612 508 603 508 592L508 464z"/></svg>
+                </a>
+
+                <button type="button"
+                        class="inline-flex items-center justify-center p-2 w-10 h-10 text-white text-sm rounded-lg hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:hover:bg-gray-700 dark:focus:ring-gray-600">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640"><path fill="#ffffff" d="M128 128C128 92.7 156.7 64 192 64L405.5 64C422.5 64 438.8 70.7 450.8 82.7L493.3 125.2C505.3 137.2 512 153.5 512 170.5L512 208L128 208L128 128zM64 320C64 284.7 92.7 256 128 256L512 256C547.3 256 576 284.7 576 320L576 416C576 433.7 561.7 448 544 448L512 448L512 512C512 547.3 483.3 576 448 576L192 576C156.7 576 128 547.3 128 512L128 448L96 448C78.3 448 64 433.7 64 416L64 320zM192 480L192 512L448 512L448 416L192 416L192 480zM520 336C520 322.7 509.3 312 496 312C482.7 312 472 322.7 472 336C472 349.3 482.7 360 496 360C509.3 360 520 349.3 520 336z"/></svg>
+                </button>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<main class="max-w-screen-xl mx-auto">
+    <!-- Progress bar -->
+    <section class="my-3">
+        <ul class="steps">
+            <li class="step current">
+                <div>
+                    <span>1</span>
+                    Informations personnelles
+                </div>
+            </li>
+
+            <li class="step">
+                <div>
+                    <span>2</span>
+                    Profil professionnel
+                </div>
+            </li>
+
+            <li class="step upcoming">
+                <div>
+                    <span>3</span>
+                    Compétences
+                </div>
+            </li>
+
+            <li class="step upcoming">
+                <div>
+                    <span>4</span>
+                    Langues
+                </div>
+            </li>
+
+            <li class="step upcoming">
+                <div>
+                    <span>5</span>
+                    Éducation
+                </div>
+            </li>
+
+            <li class="step upcoming">
+                <div>
+                    <span>6</span>
+                    Expérience
+                </div>
+            </li>
+
+            <li class="step upcoming">
+                <div>
+                    <span>7</span>
+                    Loisirs
+                </div>
+            </li>
+
+            <li class="step upcoming">
+                <div>
+                    <span>8</span>
+                    Certifications
+                </div>
+            </li>
+        </ul>
+    </section>
+
+    <!-- Multistep form-->
+    <form id="cv-form">
+        <!-- Step 1: Personal Information -->
+        <section class="form-step p-6 bg-white rounded-lg shadow-md">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+                <div class="flex items-center justify-center w-full">
+                    <label for="photo" class="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50">
+                        <div class="flex flex-col items-center justify-center pt-5 pb-6">
+                            <svg class="w-8 h-8 mb-4 text-gray-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 16">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"/>
+                            </svg>
+                            <p class="mb-2 text-sm text-gray-500"><span class="font-semibold">Cliquez pour télécharger</span></p>
+                            <p class="text-xs text-gray-500">SVG, PNG, JPG (MAX. 5MB)</p>
+                        </div>
+                        <input id="photo" type="file" class="hidden" accept="image/*"/>
+                    </label>
+                </div>
+
+                <div class="col-span-2">
+                    <div class="mb-3">
+                        <label for="fullName" class="block mb-2 text-sm font-medium text-gray-900">Prénom <span class="text-red-500">*</span></label>
+                        <input type="text" id="fullName" required class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                    </div>
+                    <div>
+                        <label for="lastName" class="block mb-2 text-sm font-medium text-gray-900">Nom de famille <span class="text-red-500">*</span></label>
+                        <input type="text" id="lastName" required class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                <div>
+                    <label for="email" class="block mb-2 text-sm font-medium text-gray-900">Email <span class="text-red-500">*</span></label>
+                    <input type="email" id="email" required class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                </div>
+                <div>
+                    <label for="phone" class="block mb-2 text-sm font-medium text-gray-900">Téléphone</label>
+                    <input type="tel" id="phone" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                </div>
+            </div>
+
+            <div class="mb-6">
+                <label for="address" class="block mb-2 text-sm font-medium text-gray-900">Adresse</label>
+                <input type="text" id="address" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                <div>
+                    <label for="nationality" class="block mb-2 text-sm font-medium text-gray-900">Nationalité</label>
+                    <input type="text" id="nationality" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                </div>
+                <div>
+                    <label for="status" class="block mb-2 text-sm font-medium text-gray-900">Etat civil</label>
+                    <select id="status" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                        <option selected>Célibataire</option>
+                        <option>Marié(e)</option>
+                        <option>Divorcé(e)</option>
+                        <option>Veuf(ve)</option>
+                        <option>Autre</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                <div>
+                    <label for="portfolio" class="block mb-2 text-sm font-medium text-gray-900">Portfolio</label>
+                    <input type="url" id="portfolio"
+                           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                           placeholder="https://yourportfolio.com">
+                </div>
+                <div>
+                    <label for="github" class="block mb-2 text-sm font-medium text-gray-900">GitHub</label>
+                    <input type="url" id="github"
+                           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                           placeholder="https://github.com/username">
+                </div>
+            </div>
+
+            <div class="mb-6">
+                <label for="linkedin" class="block mb-2 text-sm font-medium text-gray-900">LinkedIn</label>
+                <input type="url" id="linkedin"
+                       class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                       placeholder="https://linkedin.com/in/username">
+            </div>
+        </section>
+
+        <!-- Step 2: Professional Details -->
+        <section class="form-step p-6 bg-white rounded-lg shadow-md">
+            <div class="mb-6">
+                <label for="jobTitle" class="block mb-2 text-sm font-medium text-gray-900">Titre du poste</label>
+                <input type="text" id="jobTitle"
+                       class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+            </div>
+            <div>
+                <label for="profileSummary" class="block mb-2 text-sm font-medium text-gray-900">Résumé du
+                    profil</label>
+                <textarea id="profileSummary" rows="4"
+                          class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500"></textarea>
+            </div>
+        </section>
+
+        <!-- Step 3: Skills -->
+        <section class="form-step p-6 bg-white rounded-lg shadow-md">
+            <div class="skills-section mb-6">
+                <h3 class="text-lg font-medium text-gray-900 mb-3">Hard Skills</h3>
+                <div class="form-group" id="hard-skills-container">
+                    <div class="skill-input flexmb-2">
+                    <input type="text" name="hardSkill[]" placeholder="Compétence technique"
+                           class="flex-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-l-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5">
+                    <button type="button" class="remove-skill px-4 py-2 text-sm font-medium text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 rounded-r-lg">
+                        Supprimer
+                    </button>
+                </div>
+            </div>
+            <button type="button" class="add-skill inline-flex items-center px-4 py-2 text-sm font-medium text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 rounded-lg" data-type="hard">
+                <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+                </svg>
+                Ajouter Hard Skill
+            </button>
+            </div>
+
+            <div class="skills-section">
+                <h3 class="text-lg font-medium text-gray-900 mb-3">Soft Skills</h3>
+                <div class="form-group"id="soft-skills-container">
+                    <div class="skill-input flex mb-2">
+                        <input type="text" name="softSkill[]" placeholder="Compétence personnelle"
+                               class="flex-1 bg-gray-50 border border-gray-300 text-gray-900 text-smrounded-l-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5">
+                        <button type="button" class="remove-skill px-4 py-2 text-sm font-medium text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 rounded-r-lg">
+                            Supprimer
+                        </button>
+                    </div>
+                </div>
+                <button type="button" class="add-skill inline-flex items-center px-4 py-2 text-sm font-medium text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 rounded-lg" data-type="soft">
+                    <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+                    </svg>
+                    Ajouter SoftSkill
+                </button>
+            </div>
+        </section>
+
+        <div class="flex justify-between mt-3 px-3">
+            <button type="button" id="button-previous"
+                    class="hidden text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
+                Précédent
+            </button>
+            <button type="button" id="button-next"
+                    class="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
+                Suivant
+            </button>
+        </div>
+    </form>
+</main>
 </body>
 </html>
