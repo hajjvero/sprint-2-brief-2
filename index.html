@@ -17,8 +17,8 @@
     <link rel="stylesheet" href="assets/style/app.css">
 
     <!-- javascript -->
-    <script src="assets/script/app.js" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <script src="assets/script/app.js" type="module"></script>
 </head>
 <body>
 <header>
@@ -142,8 +142,8 @@
                     <input type="email" id="email" required class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
                 </div>
                 <div>
-                    <label for="phone" class="block mb-2 text-sm font-medium text-gray-900">Téléphone</label>
-                    <input type="tel" id="phone" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                    <label for="phone" class="block mb-2 text-sm font-medium text-gray-900">Téléphone <span class="text-red-500">*</span></label>
+                    <input type="tel" required id="phone" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
                 </div>
             </div>
 
@@ -161,10 +161,9 @@
                     <label for="status" class="block mb-2 text-sm font-medium text-gray-900">Etat civil</label>
                     <select id="status" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
                         <option selected>Célibataire</option>
-                        <option>Marié(e)</option>
-                        <option>Divorcé(e)</option>
-                        <option>Veuf(ve)</option>
-                        <option>Autre</option>
+                        <option value="Marié">Marié(e)</option>
+                        <option value="Divorcé">Divorcé(e)</option>
+                        <option value="Veuf">Veuf(ve)</option>
                     </select>
                 </div>
             </div>
