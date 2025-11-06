@@ -4,6 +4,27 @@ import {isEmail, isEmpty, isPhone, isRange, isURL, isURLWithPrefix} from "./util
 //                  Variables
 // ===========================================
 
+// Resume object to store all data
+export let resume = {
+    personal: {
+        photo: null,
+        fullName: null,
+        lastName: null,
+        email: null,
+        phone: null,
+        address: null,
+        nationality: null,
+        status: null,
+        portfolio: null,
+        github: null,
+        linkedin: null,
+    },
+    professional: {
+        jobTitle: null,
+        profileSummary: null
+    }
+}
+
 // list of errors objects  {id: "input-id", message: "error message"}
 let errors = [];
 const steps = Array.from(document.getElementsByClassName("step"));
@@ -52,6 +73,10 @@ buttonNext.addEventListener("click", (e) => {
         if (currentSection === sections.length - 1) {
             e.target.classList.add("hidden");
         }
+
+        updateResume();
+
+        saveCurrentSection();
     }
 });
 
@@ -59,18 +84,20 @@ buttonNext.addEventListener("click", (e) => {
 * logic of button previous
 * */
 buttonPrevious.addEventListener("click", (e) => {
+    e.target.classList.remove("hidden");
+    showSection(--currentSection);
+    showStep(currentSection);
+
     // display next button
     if (currentSection !== sections.length - 1) {
         buttonNext.classList.remove("hidden");
     }
 
-    e.target.classList.remove("hidden");
-    showSection(--currentSection);
-    showStep(currentSection);
-
     if (currentSection === 0) {
         e.target.classList.add("hidden");
     }
+
+    saveCurrentSection();
 })
 
 /*
@@ -101,6 +128,17 @@ const showStep = (order) => {
 // ===========================================
 //            Sections functions
 // ===========================================
+
+const loadCurrentSection = () => {
+    let c = localStorage.getItem("currentSection");
+    if (c !== null) {
+        currentSection = parseInt(c);
+    }
+}
+
+const saveCurrentSection = () => {
+    localStorage.setItem("currentSection", currentSection);
+}
 
 const showSection = (order) => {
     sections.map((section, index) => section.style.display = index === order ? "block" : "none");
@@ -215,6 +253,7 @@ const validate = (order) => {
             }
             break;
         case 2:
+            // Step 3: Skills
             break;
         case 3:
             break;
@@ -236,7 +275,80 @@ const validate = (order) => {
 }
 
 // ===========================================
+//            Resume functions
+// ===========================================
+
+const loadResume = () => {
+    let r = localStorage.getItem("resume");
+    if (r !== null) {
+        resume = JSON.parse(r);
+
+        // Personal Information
+        inputFullName.value = resume.personal.fullName;
+        inputLastName.value = resume.personal.lastName;
+        inputEmail.value = resume.personal.email;
+        inputPhone.value = resume.personal.phone;
+        inputAddress.value = resume.personal.address;
+        inputNationality.value = resume.personal.nationality;
+        inputStatus.value = resume.personal.status;
+        inputPortfolio.value = resume.personal.portfolio;
+        inputGithub.value = resume.personal.github;
+        inputLinkedin.value = resume.personal.linkedin;
+
+        // Professional Details
+        inputJobTitle.value = resume.professional.jobTitle;
+        inputProfileSummary.value = resume.professional.profileSummary;
+    }
+};
+
+const updateResume = () => {
+    resume = {
+        personal: {
+            fullName: inputFullName.value.trim(),
+            lastName: inputLastName.value.trim(),
+            email: inputEmail.value.trim(),
+            phone: inputPhone.value.trim(),
+            address: inputAddress.value.trim(),
+            nationality: inputNationality.value.trim(),
+            status: inputStatus.value.trim(),
+            portfolio: inputPortfolio.value.trim(),
+            github: inputGithub.value.trim(),
+            linkedin: inputLinkedin.value.trim(),
+        },
+        professional: {
+            jobTitle: inputJobTitle.value.trim(),
+            profileSummary: inputProfileSummary.value.trim(),
+        }
+    }
+
+    saveResume();
+}
+
+const saveResume = () => {
+    localStorage.setItem("resume", JSON.stringify(resume));
+};
+
+// ===========================================
 //             Initiale app
 // ===========================================
 
-showSection(currentSection);
+function run() {
+    loadCurrentSection();
+
+    loadResume();
+
+    showSection(currentSection);
+
+    showStep(currentSection);
+
+    // display next button and
+    if (currentSection === sections.length - 1) {
+        buttonNext.classList.add("hidden");
+    }
+
+    if (currentSection !== 0) {
+        buttonPrevious.classList.remove("hidden");
+    }
+}
+
+run();
