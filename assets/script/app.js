@@ -115,10 +115,10 @@ const clearErrorsMessages = () => {
         item.input.nextElementSibling.remove();
 
         // Supprimer les classes d'état d'erreur
-        item.input.classList.remove("bg-red-50", "border", "border-red-500", "text-red-900", "placeholder-red-700", "focus:ring-red-500", "focus:border-red-500");
+        item.input.classList.remove("bg-red-50", "border-red-500", "text-red-900", "focus:ring-red-500", "focus:border-red-500");
 
-        // Ajouter toutes les classes d'état success
-        item.input.classList.add("bg-green-50", "border", "border-green-500", "text-green-900", "focus:ring-green-500", "focus:border-green-500");
+        // Ajouter toutes les classes d'état normal
+        item.input.classList.add("bg-gray-50", "border-gray-300", "text-gray-900", "focus:ring-blue-500", "focus:border-blue-500");
     })
 
     errors = [];
@@ -131,10 +131,10 @@ const displayErrorsMessages = () => {
         messageElement.textContent = item.message;
 
         // Supprimer toutes les classes d'état normal
-        item.input.classList.remove("bg-gray-50", "border", "border-gray-300", "text-gray-900", "focus:ring-blue-500", "focus:border-blue-500");
+        item.input.classList.remove("bg-gray-50", "border-gray-300", "text-gray-900", "focus:ring-blue-500", "focus:border-blue-500");
 
         // Ajouter les classes d'état d'erreur
-        item.input.classList.add("bg-red-50", "border", "border-red-500", "text-red-900", "placeholder-red-700", "focus:ring-red-500", "focus:border-red-500");
+        item.input.classList.add("bg-red-50", "border-red-500", "text-red-900", "focus:ring-red-500", "focus:border-red-500");
 
         item.input.parentElement.append(messageElement);
     })
@@ -201,6 +201,18 @@ const validate = (order) => {
             }
             break;
         case 1:
+            // Step 2: Professional Details
+            if (isEmpty(inputJobTitle.value.trim())) {
+                errors.push({
+                    input: inputJobTitle, message: "Ce champ est requis."
+                });
+            }
+
+            if (isEmpty(inputProfileSummary.value.trim()) || !isRange(inputProfileSummary.value.trim().length, 40, 1000)) {
+                errors.push({
+                    input: inputProfileSummary, message: "Ce champ est requis et doit contenir entre 40 et 1000 caractères. Exemple : 'Développeur web avec 5 ans d'expérience dans la création d'applications front-end et back-end."
+                });
+            }
             break;
         case 2:
             break;
