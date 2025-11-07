@@ -208,44 +208,80 @@
 
         <!-- Step 3: Skills -->
         <section class="form-step p-6 bg-white rounded-lg shadow-md">
-            <div class="skills-section mb-6">
-                <h3 class="text-lg font-medium text-gray-900 mb-3">Hard Skills</h3>
-                <div class="form-group" id="hard-skills-container">
-                    <div class="skill-input flexmb-2">
-                    <input type="text" name="hardSkill[]" placeholder="Compétence technique"
-                           class="flex-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-l-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5">
-                    <button type="button" class="remove-skill px-4 py-2 text-sm font-medium text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 rounded-r-lg">
-                        Supprimer
+            <div class="mb-6">
+                <h2 class="text-lg font-medium text-gray-900 mb-3">Compétences Techniques</h2>
+
+                <div class="flex items-start max-w-sm">
+                    <div class="relative w-full">
+                        <input type="text" id="hard-skills-input" aria-label="input skills" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 " placeholder="Entrer une compétence" required />
+                    </div>
+
+                    <button type="button" aria-label="Ajouter ou Modifier" id="hard-skills-save-button" class="p-2.5 ms-2 text-sm font-medium text-white bg-blue-700 rounded-lg border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 640 640"><path fill="#ffffff" d="M352 128C352 110.3 337.7 96 320 96C302.3 96 288 110.3 288 128L288 288L128 288C110.3 288 96 302.3 96 320C96 337.7 110.3 352 128 352L288 352L288 512C288 529.7 302.3 544 320 544C337.7 544 352 529.7 352 512L352 352L512 352C529.7 352 544 337.7 544 320C544 302.3 529.7 288 512 288L352 288L352 128z"/></svg>
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="hidden" width="1em" height="1em" viewBox="0 0 24 24"><path fill="currentColor" d="M21 7v12q0 .825-.587 1.413T19 21H5q-.825 0-1.412-.587T3 19V5q0-.825.588-1.412T5 3h12zm-9 11q1.25 0 2.125-.875T15 15t-.875-2.125T12 12t-2.125.875T9 15t.875 2.125T12 18m-6-8h9V6H6z"/></svg>
+                    </button>
+
+                    <button type="button" aria-label="Anuler" id="hard-skills-clear-button" class="p-2.5 ms-2 text-sm font-medium text-white bg-gray-700 rounded-lg border border-gray-700 hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-gray-300">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 640 640"><path fill="#ffffff" d="M431.2 476.5L163.5 208.8C141.1 240.2 128 278.6 128 320C128 426 214 512 320 512C361.5 512 399.9 498.9 431.2 476.5zM476.5 431.2C498.9 399.8 512 361.4 512 320C512 214 426 128 320 128C278.5 128 240.1 141.1 208.8 163.5L476.5 431.2zM64 320C64 178.6 178.6 64 320 64C461.4 64 576 178.6 576 320C576 461.4 461.4 576 320 576C178.6 576 64 461.4 64 320z"/></svg>
                     </button>
                 </div>
-            </div>
-            <button type="button" class="add-skill inline-flex items-center px-4 py-2 text-sm font-medium text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 rounded-lg" data-type="hard">
-                <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
-                </svg>
-                Ajouter Hard Skill
-            </button>
+
+                <ul class="mt-2" id="hard-skills-container">
+                    <!-- list -->
+                </ul>
             </div>
 
-            <div class="skills-section">
-                <h3 class="text-lg font-medium text-gray-900 mb-3">Soft Skills</h3>
-                <div class="form-group"id="soft-skills-container">
-                    <div class="skill-input flex mb-2">
-                        <input type="text" name="softSkill[]" placeholder="Compétence personnelle"
-                               class="flex-1 bg-gray-50 border border-gray-300 text-gray-900 text-smrounded-l-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5">
-                        <button type="button" class="remove-skill px-4 py-2 text-sm font-medium text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 rounded-r-lg">
-                            Supprimer
-                        </button>
+            <div class="mt-15 mb-6">
+                <h2 class="text-lg font-medium text-gray-900 mb-3">Compétences Transversales</h2>
+
+                <div class="flex items-start max-w-sm">
+                    <div class="relative w-full">
+                        <input type="text" id="soft-skills-input" aria-label="input skills" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 " placeholder="Entrer une compétence" required />
                     </div>
+
+                    <button type="button" aria-label="Ajouter ou Modifier" id="soft-skills-save-button" class="p-2.5 ms-2 text-sm font-medium text-white bg-blue-700 rounded-lg border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 640 640"><path fill="#ffffff" d="M352 128C352 110.3 337.7 96 320 96C302.3 96 288 110.3 288 128L288 288L128 288C110.3 288 96 302.3 96 320C96 337.7 110.3 352 128 352L288 352L288 512C288 529.7 302.3 544 320 544C337.7 544 352 529.7 352 512L352 352L512 352C529.7 352 544 337.7 544 320C544 302.3 529.7 288 512 288L352 288L352 128z"/></svg>
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="hidden" width="1em" height="1em" viewBox="0 0 24 24"><path fill="currentColor" d="M21 7v12q0 .825-.587 1.413T19 21H5q-.825 0-1.412-.587T3 19V5q0-.825.588-1.412T5 3h12zm-9 11q1.25 0 2.125-.875T15 15t-.875-2.125T12 12t-2.125.875T9 15t.875 2.125T12 18m-6-8h9V6H6z"/></svg>
+                    </button>
+
+                    <button type="button" aria-label="Anuler" id="soft-skills-clear-button"  class="p-2.5 ms-2 text-sm font-medium text-white bg-gray-700 rounded-lg border border-gray-700 hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-gray-300">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 640 640"><path fill="#ffffff" d="M431.2 476.5L163.5 208.8C141.1 240.2 128 278.6 128 320C128 426 214 512 320 512C361.5 512 399.9 498.9 431.2 476.5zM476.5 431.2C498.9 399.8 512 361.4 512 320C512 214 426 128 320 128C278.5 128 240.1 141.1 208.8 163.5L476.5 431.2zM64 320C64 178.6 178.6 64 320 64C461.4 64 576 178.6 576 320C576 461.4 461.4 576 320 576C178.6 576 64 461.4 64 320z"/></svg>
+                    </button>
                 </div>
-                <button type="button" class="add-skill inline-flex items-center px-4 py-2 text-sm font-medium text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 rounded-lg" data-type="soft">
-                    <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
-                    </svg>
-                    Ajouter SoftSkill
-                </button>
+
+                <ul class="mt-2 flex flex-wrap gap-2" id="soft-skills-container">
+                        <!-- list -->
+                </ul>
             </div>
         </section>
+
+        <!-- Step 4: Languages -->
+        <section class="form-step p-6 bg-white rounded-lg shadow-md">
+
+        </section>
+
+        <!-- Step 5: Education -->
+        <section class="form-step p-6 bg-white rounded-lg shadow-md">
+
+        </section>
+
+        <!-- Step 6: Experience -->
+        <section class="form-step p-6 bg-white rounded-lg shadow-md">
+
+        </section>
+
+        <!-- Step 7: Hobbies -->
+        <section class="form-step p-6 bg-white rounded-lg shadow-md">
+
+        </section>
+
+        <!-- Step 8: Certifications -->
+        <section class="form-step p-6 bg-white rounded-lg shadow-md">
+
+        </section>
+
 
         <div class="flex justify-between mt-3 px-3">
             <button type="button" id="button-previous"

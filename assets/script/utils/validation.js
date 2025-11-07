@@ -1,3 +1,155 @@
+import {
+    inputAddress,
+    inputEmail,
+    inputFullName, inputGithub,
+    inputLastName, inputLinkedin,
+    inputPhone,
+    inputPortfolio
+} from "../helper/personal-info-helper.js";
+import {
+    inputJobTitle,
+    inputProfileSummary
+} from "../helper/professional-info-helper.js";
+
+// list of errors objects  {element: htmlElement, message: "error message"}
+export let errors = [];
+
+// ===========================================
+//         Validate function
+// ===========================================
+
+export function validate(order) {
+    // clear errors
+    errors.map((item) => removeError(item.element));
+    errors= [];
+
+    // remplire les erreurs
+    switch (order) {
+        case 0:
+            // Step 1: Personal Information
+            if (isEmpty(inputFullName.value.trim())) {
+                errors.push({
+                    element: inputFullName,
+                    message: "Ce champ est requis."
+                });
+            }
+
+            if (isEmpty(inputLastName.value.trim())) {
+                errors.push({
+                    element: inputLastName,
+                    message: "Ce champ est requis."
+                });
+            }
+
+            if (!isEmail(inputEmail.value.trim())) {
+                errors.push({
+                    element: inputEmail,
+                    message: "Veuillez entrer une adresse e-mail valide. Exemple : 'exemple@mail.com'"
+                });
+            }
+
+            if (!isPhone(inputPhone.value.trim())) {
+                errors.push({
+                    element: inputPhone,
+                    message: "Veuillez entrer un numéro de téléphone valide. Exemple : '+212 6 12 34 56 78'"
+                });
+            }
+
+            if (!isEmpty(inputAddress.value.trim()) && !isRange(inputAddress.value.trim().length, 5, 200)) {
+                errors.push({
+                    element: inputAddress,
+                    message: "Veuillez entrer une adresse valide de 5 à 200 caractères. Exemple : '123 Rue de Casablanca, Maroc'"
+                });
+            }
+
+            if (!isEmpty(inputPortfolio.value.trim()) && !isURL(inputPortfolio.value.trim())) {
+                errors.push({
+                    element: inputPortfolio,
+                    message: "Veuillez entrer une URL de portfolio valide. Exemple : 'https://monportfolio.com'"
+                });
+            }
+
+            if (!isEmpty(inputGithub.value.trim()) && !isURLWithPrefix(inputGithub.value.trim(), "github\\.com\/")) {
+                errors.push({
+                    element: inputGithub,
+                    message: "Veuillez entrer une URL GitHub valide. Exemple : 'https://github.com/monusername'"
+                });
+            }
+
+            if (!isEmpty(inputLinkedin.value.trim()) && !isURLWithPrefix(inputLinkedin.value.trim(), "linkedin\\.com\/in\/")) {
+                errors.push({
+                    element: inputLinkedin,
+                    message: "Veuillez entrer une URL LinkedIn valide. Exemple : 'https://linkedin.com/in/monprofil'"
+                });
+            }
+            break;
+        case 1:
+            // Step 2: Professional Details
+            if (isEmpty(inputJobTitle.value.trim())) {
+                errors.push({
+                    element: inputJobTitle,
+                    message: "Ce champ est requis."
+                });
+            }
+
+            if (isEmpty(inputProfileSummary.value.trim()) || !isRange(inputProfileSummary.value.trim().length, 40, 1000)) {
+                errors.push({
+                    element: inputProfileSummary,
+                    message: "Ce champ est requis et doit contenir entre 40 et 1000 caractères. Exemple : 'Développeur web avec 5 ans d'expérience dans la création d'applications front-end et back-end."
+                });
+            }
+            break;
+        case 2:
+            // Step 3: Skills
+            break;
+        case 3:
+            break;
+        case 4:
+            break;
+        case 5:
+            break;
+        case 6:
+            break;
+        case 7:
+            break;
+        case 8:
+            break;
+        case 9:
+            break;
+    }
+
+    // Afficher les erreurs
+    errors.map((item) => displayError(item.element, item.message))
+}
+
+// ===========================================
+//         Error functions
+// ===========================================
+
+export function displayError(target ,error) {
+    const messageElement = document.createElement("p");
+    messageElement.setAttribute("class", "message-error");
+    messageElement.textContent = error;
+
+    // Supprimer toutes les classes d'état normal
+    target.classList.remove("bg-gray-50", "border-gray-300", "text-gray-900", "focus:ring-blue-500", "focus:border-blue-500");
+
+    // Ajouter les classes d'état d'erreur
+    target.classList.add("bg-red-50", "border-red-500", "text-red-900", "focus:ring-red-500", "focus:border-red-500");
+
+    target.parentElement?.append(messageElement);
+}
+
+export function removeError(target) {
+    target.nextElementSibling?.remove();
+
+    // Supprimer les classes d'état d'erreur
+    target.classList.remove("bg-red-50", "border-red-500", "text-red-900", "focus:ring-red-500", "focus:border-red-500");
+
+    // Ajouter toutes les classes d'état normal
+    target.classList.add("bg-gray-50", "border-gray-300", "text-gray-900", "focus:ring-blue-500", "focus:border-blue-500");
+}
+
 // ===========================================
 //         Validation utility functions
 // ===========================================

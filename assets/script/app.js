@@ -1,53 +1,34 @@
-import {isEmail, isEmpty, isPhone, isRange, isURL, isURLWithPrefix} from "./utils/validation.js";
+import {resumeObjet, loadResume, saveResume} from "./helper/resume-helper.js";
+import {errors, validate} from "./utils/validation.js";
+import {
+    inputAddress,
+    inputEmail,
+    inputFullName, inputGithub,
+    inputLastName, inputLinkedin, inputNationality,
+    inputPhone,
+    inputPortfolio, inputStatus, updatePersonalInfoResume
+} from "./helper/personal-info-helper.js";
+import {
+    inputJobTitle,
+    inputProfileSummary,
+    updateProfessionalInfoResume
+} from "./helper/professional-info-helper.js";
+import initHardSkills, {renderHardSkills} from "./components/skills/hard-skills.js";
+import initSoftSkills, {renderSoftSkills} from "./components/skills/soft-skills.js";
 
 // ===========================================
 //                  Variables
 // ===========================================
 
-// Resume object to store all data
-export let resume = {
-    personal: {
-        photo: null,
-        fullName: null,
-        lastName: null,
-        email: null,
-        phone: null,
-        address: null,
-        nationality: null,
-        status: null,
-        portfolio: null,
-        github: null,
-        linkedin: null,
-    },
-    professional: {
-        jobTitle: null,
-        profileSummary: null
-    }
-}
-
-// list of errors objects  {id: "input-id", message: "error message"}
-let errors = [];
 const steps = Array.from(document.getElementsByClassName("step"));
-const cvForm = document.getElementById("cv-form");
 const sections = Array.from(document.getElementsByClassName("form-step"));
+const cvForm = document.getElementById("cv-form");
 
-// variables of inputs
-const inputPhoto = document.getElementById('photo');
-const inputFullName = document.getElementById('fullName');
-const inputLastName = document.getElementById('lastName');
-const inputEmail = document.getElementById('email');
-const inputPhone = document.getElementById('phone');
-const inputAddress = document.getElementById('address');
-const inputNationality = document.getElementById('nationality');
-const inputStatus = document.getElementById('status');
-const inputPortfolio = document.getElementById('portfolio');
-const inputGithub = document.getElementById('github');
-const inputLinkedin = document.getElementById('linkedin');
-const inputJobTitle = document.getElementById('jobTitle');
-const inputProfileSummary = document.getElementById('profileSummary');
-
+// button next and previous
 const buttonPrevious = document.getElementById("button-previous");
 const buttonNext = document.getElementById("button-next");
+
+// section current
 let currentSection = 0;
 
 
@@ -61,7 +42,20 @@ let currentSection = 0;
 buttonNext.addEventListener("click", (e) => {
     validate(currentSection);
 
+    // is valid data
     if (errors.length === 0) {
+        // update resume object data based section current
+        switch (currentSection) {
+            case 0:
+                // Step 1: Update Personal Information
+                updatePersonalInfoResume();
+                break;
+            case 1:
+                // Step 2: Professional Details
+                updateProfessionalInfoResume();
+                break;
+        }
+
         // logic of display previous button
         buttonPrevious.classList.remove("hidden");
 
@@ -74,8 +68,10 @@ buttonNext.addEventListener("click", (e) => {
             e.target.classList.add("hidden");
         }
 
-        updateResume();
+        // save information of section
+        saveResume();
 
+        // save current section
         saveCurrentSection();
     }
 });
@@ -97,6 +93,7 @@ buttonPrevious.addEventListener("click", (e) => {
         e.target.classList.add("hidden");
     }
 
+    // save current section
     saveCurrentSection();
 })
 
@@ -145,187 +142,29 @@ const showSection = (order) => {
 }
 
 // ===========================================
-//            Validation functions
-// ===========================================
-
-const clearErrorsMessages = () => {
-    errors.map((item) => {
-        item.input.nextElementSibling.remove();
-
-        // Supprimer les classes d'état d'erreur
-        item.input.classList.remove("bg-red-50", "border-red-500", "text-red-900", "focus:ring-red-500", "focus:border-red-500");
-
-        // Ajouter toutes les classes d'état normal
-        item.input.classList.add("bg-gray-50", "border-gray-300", "text-gray-900", "focus:ring-blue-500", "focus:border-blue-500");
-    })
-
-    errors = [];
-}
-
-const displayErrorsMessages = () => {
-    errors.map((item) => {
-        const messageElement = document.createElement("p");
-        messageElement.setAttribute("class", "message-error");
-        messageElement.textContent = item.message;
-
-        // Supprimer toutes les classes d'état normal
-        item.input.classList.remove("bg-gray-50", "border-gray-300", "text-gray-900", "focus:ring-blue-500", "focus:border-blue-500");
-
-        // Ajouter les classes d'état d'erreur
-        item.input.classList.add("bg-red-50", "border-red-500", "text-red-900", "focus:ring-red-500", "focus:border-red-500");
-
-        item.input.parentElement.append(messageElement);
-    })
-}
-
-const validate = (order) => {
-    clearErrorsMessages();
-
-    switch (order) {
-        case 0:
-            // Step 1: Personal Information
-            if (isEmpty(inputFullName.value.trim())) {
-                errors.push({
-                    input: inputFullName, message: "Ce champ est requis."
-                });
-            }
-
-            if (isEmpty(inputLastName.value.trim())) {
-                errors.push({
-                    input: inputLastName, message: "Ce champ est requis."
-                });
-            }
-
-            if (!isEmail(inputEmail.value.trim())) {
-                errors.push({
-                    input: inputEmail,
-                    message: "Veuillez entrer une adresse e-mail valide. Exemple : 'exemple@mail.com'"
-                });
-            }
-
-            if (!isPhone(inputPhone.value.trim())) {
-                errors.push({
-                    input: inputPhone,
-                    message: "Veuillez entrer un numéro de téléphone valide. Exemple : '+212 6 12 34 56 78'"
-                });
-            }
-
-            if (!isEmpty(inputAddress.value.trim()) && !isRange(inputAddress.value.trim().length, 5, 200)) {
-                errors.push({
-                    input: inputAddress,
-                    message: "Veuillez entrer une adresse valide de 5 à 200 caractères. Exemple : '123 Rue de Casablanca, Maroc'"
-                });
-            }
-
-            if (!isEmpty(inputPortfolio.value.trim()) && !isURL(inputPortfolio.value.trim())) {
-                errors.push({
-                    input: inputPortfolio,
-                    message: "Veuillez entrer une URL de portfolio valide. Exemple : 'https://monportfolio.com'"
-                });
-            }
-
-            if (!isEmpty(inputGithub.value.trim()) && !isURLWithPrefix(inputGithub.value.trim(), "github\\.com\/")) {
-                errors.push({
-                    input: inputGithub,
-                    message: "Veuillez entrer une URL GitHub valide. Exemple : 'https://github.com/monusername'"
-                });
-            }
-
-            if (!isEmpty(inputLinkedin.value.trim()) && !isURLWithPrefix(inputLinkedin.value.trim(), "linkedin\\.com\/in\/")) {
-                errors.push({
-                    input: inputLinkedin,
-                    message: "Veuillez entrer une URL LinkedIn valide. Exemple : 'https://linkedin.com/in/monprofil'"
-                });
-            }
-            break;
-        case 1:
-            // Step 2: Professional Details
-            if (isEmpty(inputJobTitle.value.trim())) {
-                errors.push({
-                    input: inputJobTitle, message: "Ce champ est requis."
-                });
-            }
-
-            if (isEmpty(inputProfileSummary.value.trim()) || !isRange(inputProfileSummary.value.trim().length, 40, 1000)) {
-                errors.push({
-                    input: inputProfileSummary, message: "Ce champ est requis et doit contenir entre 40 et 1000 caractères. Exemple : 'Développeur web avec 5 ans d'expérience dans la création d'applications front-end et back-end."
-                });
-            }
-            break;
-        case 2:
-            // Step 3: Skills
-            break;
-        case 3:
-            break;
-        case 4:
-            break;
-        case 5:
-            break;
-        case 6:
-            break;
-        case 7:
-            break;
-        case 8:
-            break;
-        case 9:
-            break;
-    }
-
-    displayErrorsMessages();
-}
-
-// ===========================================
 //            Resume functions
 // ===========================================
 
-const loadResume = () => {
-    let r = localStorage.getItem("resume");
-    if (r !== null) {
-        resume = JSON.parse(r);
+const renderResume = () => {
+    // Personal Information
+    inputFullName.value = resumeObjet.personal.fullName;
+    inputLastName.value = resumeObjet.personal.lastName;
+    inputEmail.value = resumeObjet.personal.email;
+    inputPhone.value = resumeObjet.personal.phone;
+    inputAddress.value = resumeObjet.personal.address;
+    inputNationality.value = resumeObjet.personal.nationality;
+    inputStatus.value = resumeObjet.personal.status;
+    inputPortfolio.value = resumeObjet.personal.portfolio;
+    inputGithub.value = resumeObjet.personal.github;
+    inputLinkedin.value = resumeObjet.personal.linkedin;
 
-        // Personal Information
-        inputFullName.value = resume.personal.fullName;
-        inputLastName.value = resume.personal.lastName;
-        inputEmail.value = resume.personal.email;
-        inputPhone.value = resume.personal.phone;
-        inputAddress.value = resume.personal.address;
-        inputNationality.value = resume.personal.nationality;
-        inputStatus.value = resume.personal.status;
-        inputPortfolio.value = resume.personal.portfolio;
-        inputGithub.value = resume.personal.github;
-        inputLinkedin.value = resume.personal.linkedin;
+    // Professional Details
+    inputJobTitle.value = resumeObjet.professional.jobTitle;
+    inputProfileSummary.value = resumeObjet.professional.profileSummary;
 
-        // Professional Details
-        inputJobTitle.value = resume.professional.jobTitle;
-        inputProfileSummary.value = resume.professional.profileSummary;
-    }
-};
-
-const updateResume = () => {
-    resume = {
-        personal: {
-            fullName: inputFullName.value.trim(),
-            lastName: inputLastName.value.trim(),
-            email: inputEmail.value.trim(),
-            phone: inputPhone.value.trim(),
-            address: inputAddress.value.trim(),
-            nationality: inputNationality.value.trim(),
-            status: inputStatus.value.trim(),
-            portfolio: inputPortfolio.value.trim(),
-            github: inputGithub.value.trim(),
-            linkedin: inputLinkedin.value.trim(),
-        },
-        professional: {
-            jobTitle: inputJobTitle.value.trim(),
-            profileSummary: inputProfileSummary.value.trim(),
-        }
-    }
-
-    saveResume();
-}
-
-const saveResume = () => {
-    localStorage.setItem("resume", JSON.stringify(resume));
+    // Skills
+    renderHardSkills();
+    renderSoftSkills();
 };
 
 // ===========================================
@@ -337,11 +176,16 @@ function run() {
 
     loadResume();
 
+    renderResume();
+
     showSection(currentSection);
 
     showStep(currentSection);
 
-    // display next button and
+    initHardSkills();
+    initSoftSkills();
+
+    // display next button and on start app
     if (currentSection === sections.length - 1) {
         buttonNext.classList.add("hidden");
     }
