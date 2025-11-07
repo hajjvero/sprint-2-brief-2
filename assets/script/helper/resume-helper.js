@@ -20,7 +20,8 @@ export let resumeObjet = {
     skills: {
         hard: [],
         soft: []
-    }
+    },
+    languages: [],
 }
 
 export const saveResume = () => {
