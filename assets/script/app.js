@@ -16,6 +16,7 @@ import {
 import initHardSkills, {renderHardSkills} from "./components/skills/hard-skills.js";
 import initSoftSkills, {renderSoftSkills} from "./components/skills/soft-skills.js";
 import initLanguages, {renderLanguages} from "./components/language.js";
+import initEducation, {renderEducation} from "./components/education.js";
 
 // ===========================================
 //                  Variables
@@ -169,6 +170,9 @@ const renderResume = () => {
 
     // Languages
     renderLanguages();
+
+    // Education
+    renderEducation();
 };
 
 // ===========================================
@@ -190,6 +194,8 @@ function run() {
     initSoftSkills();
 
     initLanguages();
+
+    initEducation();
 
     // display next button and on start app
     if (currentSection === sections.length - 1) {
