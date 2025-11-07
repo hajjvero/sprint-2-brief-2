@@ -22,7 +22,8 @@ export let resumeObjet = {
         soft: []
     },
     languages: [],
-    education: []
+    education: [],
+    experience: []
 }
 
 export const saveResume = () => {

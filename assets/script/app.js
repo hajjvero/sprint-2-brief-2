@@ -17,6 +17,7 @@ import initHardSkills, {renderHardSkills} from "./components/skills/hard-skills.
 import initSoftSkills, {renderSoftSkills} from "./components/skills/soft-skills.js";
 import initLanguages, {renderLanguages} from "./components/language.js";
 import initEducation, {renderEducation} from "./components/education.js";
+import initExperience, {renderExperience} from "./components/experience.js";
 
 // ===========================================
 //                  Variables
@@ -95,8 +96,7 @@ buttonPrevious.addEventListener("click", (e) => {
         e.target.classList.add("hidden");
     }
 
-    // save current section
-    saveCurrentSection();
+    // save current sectionsaveCurrentSection();
 })
 
 /*
@@ -125,7 +125,7 @@ const showStep = (order) => {
 }
 
 // ===========================================
-//            Sections functions
+//Sections functions
 // ===========================================
 
 const loadCurrentSection = () => {
@@ -173,6 +173,9 @@ const renderResume = () => {
 
     // Education
     renderEducation();
+
+    // Experience
+    renderExperience();
 };
 
 // ===========================================
@@ -196,6 +199,7 @@ function run() {
     initLanguages();
 
     initEducation();
+    initExperience();
 
     // display next button and on start app
     if (currentSection === sections.length - 1) {
