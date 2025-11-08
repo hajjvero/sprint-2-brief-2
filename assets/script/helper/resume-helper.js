@@ -24,7 +24,8 @@ export let resumeObjet = {
     languages: [],
     education: [],
     experience: [],
-    hobbies: []
+    hobbies: [],
+    certifications: []
 }
 
 export const saveResume = () => {
