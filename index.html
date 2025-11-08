@@ -22,7 +22,7 @@
 </head>
 <body>
 <header>
-    <nav class="border-gray-200 bg-gray-50 dark:bg-gray-800dark:border-gray-700">
+    <nav class="border-gray-200 bg-gray-50 dark:bg-gray-800 dark:border-gray-700">
         <div class="max-w-8/12 flex flex-wrap items-center justify-between mx-auto py-3">
             <a href="#" class="flex items-center space-x-3 rtl:space-x-reverse">
                 <img src="https://flowbite.com/docs/images/logo.svg" class="h-8" alt="Flowbite Logo"/>
@@ -39,7 +39,7 @@
                 </a>
 
                 <button type="button"
-                        class="inline-flex items-center justify-center p-2w-10 h-10 text-white text-sm rounded-lg hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:hover:bg-gray-700 dark:focus:ring-gray-600">
+                        class="inline-flex items-center justify-center p-2 w-10 h-10 text-white text-sm rounded-lg hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:hover:bg-gray-700 dark:focus:ring-gray-600">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640">
                         <path fill="#ffffff"
                               d="M128 128C128 92.7 156.7 64 192 64L405.5 64C422.5 64 438.8 70.7 450.8 82.7L493.3 125.2C505.3 137.2 512 153.5 512 170.5L512 208L128 208L128 128zM64 320C64 284.7 92.7 256 128 256L512 256C547.3 256 576 284.7 576 320L576 416C576 433.7 561.7 448 544 448L512 448L512 512C512 547.3 483.3 576 448 576L192 576C156.7 576 128 547.3 128 512L128 448L96 448C78.3 448 64 433.7 64 416L64 320zM192 480L192 512L448 512L448 416L192 416L192 480zM520 336C520 322.7 509.3 312 496 312C482.7 312 472 322.7 472 336C472 349.3 482.7 360 496 360C509.3 360 520 349.3 520 336z"/>
@@ -78,35 +78,35 @@
             <li class="step upcoming">
                 <div>
                     <span>4</span>
-                    Langues
+                    Loisirs
                 </div>
             </li>
 
             <li class="step upcoming">
                 <div>
                     <span>5</span>
-                    Éducation
+                    Langues
                 </div>
             </li>
 
             <li class="step upcoming">
                 <div>
                     <span>6</span>
-                    Expérience
+                    Éducation
                 </div>
             </li>
 
             <li class="step upcoming">
                 <div>
                     <span>7</span>
-                    Projets
+                    Expérience
                 </div>
             </li>
 
             <li class="step upcoming">
                 <div>
                     <span>8</span>
-                    Loisirs
+                    Projets
                 </div>
             </li>
             
@@ -315,7 +315,48 @@
             </div>
         </section>
 
-        <!-- Step 4: Languages -->
+        <!-- Step 4: Hobbies -->
+        <section class="form-step p-6 bg-white rounded-lg shadow-md">
+            <div class="mb-6">
+                <h2 class="text-lg font-medium text-gray-900 mb-3">Loisirs</h2>
+
+                <div class="flex items-start max-w-sm">
+                    <div class="relative w-full">
+                        <input type="text" id="hobbies-input" aria-label="input hobbies"
+                               class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                               placeholder="Entrer un loisir" required/>
+                    </div>
+
+                    <button type="button" aria-label="Ajouter ou Modifier" id="hobbies-save-button"
+                            class="p-2.5 ms-2 text-sm font-medium text-white bg-blue-700 rounded-lg border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 640 640">
+                            <path fill="#ffffff"
+                                  d="M352 128C352 110.3 337.7 96 320 96C302.3 96 288 110.3 288 128L288 288L128 288C110.3 288 96 302.3 96 320C96 337.7 110.3 352 128 352L288 352L288 512C288 529.7 302.3 544 320 544C337.7 544 352 529.7 352 512L352 352L512 352C529.7 352 544 337.7 544 320C544 302.3 529.7 288 512 288L352 288L352 128z"/>
+                        </svg>
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="hidden" width="1em" height="1em"
+                             viewBox="0 0 24 24">
+                            <path fill="currentColor"
+                                  d="M21 7v12q0 .825-.587 1.413T19 21H5q-.825 0-1.412-.587T3 19V5q0-.825.588-1.412T5 3h12zm-9 11q1.25 0 2.125-.875T15 15t-.875-2.125T12 12t-2.125.875T9 15t.875 2.125T12 18m-6-8h9V6H6z"/>
+                        </svg>
+                    </button>
+
+                    <button type="button" aria-label="Anuler" id="hobbies-clear-button"
+                            class="p-2.5 ms-2 text-sm font-medium text-white bg-gray-700 rounded-lg border border-gray-700 hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-gray-300">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 512 512">
+                            <path fill="currentColor"
+                                  d="M367.2 412.5L99.5 144.8C77.1 176.2 64 214.6 64 256c0 106 86 192 192 192c41.5 0 79.9-13.1 111.2-35.5m45.3-45.3C434.9 335.8 448 297.4 448 256c0-106-86-192-192-192c-41.5 0-79.9 13.1-111.2 35.5zM0 256a256 256 0 1 1 512 0a256 256 0 1 1-512 0"/>
+                        </svg>
+                    </button>
+                </div>
+
+                <ul class="mt-2 flex flex-wrap gap-2" id="hobbies-container">
+                    <!-- list -->
+                </ul>
+            </div>
+        </section>
+
+        <!-- Step 5: Languages -->
         <section class="form-step p-6 bg-white rounded-lg shadow-md">
             <div class="flex items-start max-w-smmx-auto" id="languages-form-like">
                 <div class="relative flex gap-2">
@@ -365,7 +406,7 @@
             </ul>
         </section>
 
-        <!-- Step 5: Education -->
+        <!-- Step 6: Education -->
         <section class="form-step p-6 bg-white rounded-lg shadow-md">
             <div class="max-w-2xl mx-auto space-y-4" id="education-form-like">
                 <!-- Établissement & Diplôme -->
@@ -444,7 +485,7 @@
             </div>
         </section>
 
-        <!-- Step 6: Experience -->
+        <!-- Step 7: Experience -->
         <section class="form-step p-6 bg-white rounded-lg shadow-md">
             <div class="max-w-2xl mx-auto space-y-4" id="experience-form-like">
                 <!-- Poste & Entreprise -->
@@ -525,7 +566,7 @@
             </div>
         </section>
 
-        <!-- Step 7: Projects -->
+        <!-- Step 8: Projects -->
         <section class="form-step p-6 bg-white rounded-lg shadow-md">
             <div class="max-w-2xl mx-auto space-y-4" id="projects-form-like">
                 <!-- Nom du projet & Entreprise -->
@@ -598,47 +639,6 @@
             <div class="mt-6 max-w-2xl mx-auto">
                 <ul class="space-y-3" id="projects-container">
                     <!-- Project items -->
-                </ul>
-            </div>
-        </section>
-
-        <!-- Step 8: Hobbies -->
-        <section class="form-step p-6 bg-white rounded-lg shadow-md">
-            <div class="mb-6">
-                <h2 class="text-lg font-medium text-gray-900 mb-3">Loisirs</h2>
-
-                <div class="flex items-start max-w-sm">
-                    <div class="relative w-full">
-                        <input type="text" id="hobbies-input" aria-label="input hobbies"
-                               class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                               placeholder="Entrer un loisir" required/>
-                    </div>
-
-                    <button type="button" aria-label="Ajouter ou Modifier" id="hobbies-save-button"
-                            class="p-2.5 ms-2 text-sm font-medium text-white bg-blue-700 rounded-lg border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 640 640">
-                            <path fill="#ffffff"
-                                  d="M352 128C352 110.3 337.7 96 320 96C302.3 96 288 110.3 288 128L288 288L128 288C110.3 288 96 302.3 96 320C96 337.7 110.3 352 128 352L288 352L288 512C288 529.7 302.3 544 320 544C337.7 544 352 529.7 352 512L352 352L512 352C529.7 352 544 337.7 544 320C544 302.3 529.7 288 512 288L352 288L352 128z"/>
-                        </svg>
-
-                        <svg xmlns="http://www.w3.org/2000/svg" class="hidden" width="1em" height="1em"
-                             viewBox="0 0 24 24">
-                            <path fill="currentColor"
-                                  d="M21 7v12q0 .825-.587 1.413T19 21H5q-.825 0-1.412-.587T3 19V5q0-.825.588-1.412T5 3h12zm-9 11q1.25 0 2.125-.875T15 15t-.875-2.125T12 12t-2.125.875T9 15t.875 2.125T12 18m-6-8h9V6H6z"/>
-                        </svg>
-                    </button>
-
-                    <button type="button" aria-label="Anuler" id="hobbies-clear-button"
-                            class="p-2.5 ms-2 text-sm font-medium text-white bg-gray-700 rounded-lg border border-gray-700 hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-gray-300">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 512 512">
-                            <path fill="currentColor"
-                                  d="M367.2 412.5L99.5 144.8C77.1 176.2 64 214.6 64 256c0 106 86 192 192 192c41.5 0 79.9-13.1 111.2-35.5m45.3-45.3C434.9 335.8 448 297.4 448 256c0-106-86-192-192-192c-41.5 0-79.9 13.1-111.2 35.5zM0 256a256 256 0 1 1 512 0a256 256 0 1 1-512 0"/>
-                        </svg>
-                    </button>
-                </div>
-
-                <ul class="mt-2 flex flex-wrap gap-2" id="hobbies-container">
-                    <!-- list -->
                 </ul>
             </div>
         </section>
@@ -718,11 +718,13 @@
 
         <div class="flex justify-between mt-3 px-3">
             <button type="button" id="button-previous"
-                    class="hidden text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
+                    class="hidden text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2">
+                <svg class="inline-block me-2" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="currentColor" d="M2 5a.75.75 0 0 1 1.5 0v14A.75.75 0 0 1 2 19z" opacity=".5"/><path fill="currentColor" d="M8.09 14.647c-1.787-1.154-1.787-4.14 0-5.294l10.79-6.968c1.736-1.121 3.87.339 3.87 2.648v13.934c0 2.31-2.134 3.769-3.87 2.648z"/></svg>
                 Précédent
             </button>
             <button type="button" id="button-next"
-                    class="focus:outline-none text-whitebg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
+                    class="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2">
+                <svg class="inline-block me-2" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="currentColor" d="M22.75 5a.75.75 0 0 0-1.5 0v14a.75.75 0 0 0 1.5 0z" opacity=".5"/><path fill="currentColor" d="M16.66 14.647c1.787-1.154 1.787-4.14 0-5.294L5.87 2.385C4.135 1.264 2 2.724 2 5.033v13.934c0 2.31 2.134 3.769 3.87 2.648z"/></svg>
                 Suivant
             </button>
         </div>
