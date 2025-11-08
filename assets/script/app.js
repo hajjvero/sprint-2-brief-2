@@ -20,6 +20,7 @@ import initEducation, {renderEducation} from "./components/education.js";
 import initExperience, {renderExperience} from "./components/experience.js";
 import initHobbies, {renderHobbies} from "./components/hobbies.js";
 import initCertifications, {renderCertifications} from "./components/certifications.js";
+import initProjects, {renderProjects} from "./components/projects.js";
 
 // ===========================================
 //                  Variables
@@ -183,6 +184,9 @@ const renderResume = () => {
     // Hobbies
     renderHobbies();
     
+    // Projects
+    renderProjects();
+    
     // Certifications
     renderCertifications();
 };
@@ -211,6 +215,8 @@ function run() {
     initExperience();
     
     initHobbies();
+    
+    initProjects();
     
     initCertifications();
 

@@ -99,13 +99,20 @@
             <li class="step upcoming">
                 <div>
                     <span>7</span>
-                    Loisirs
+                    Projets
                 </div>
             </li>
 
             <li class="step upcoming">
                 <div>
                     <span>8</span>
+                    Loisirs
+                </div>
+            </li>
+            
+            <li class="step upcoming">
+                <div>
+                    <span>9</span>
                     Certifications
                 </div>
             </li>
@@ -518,7 +525,84 @@
             </div>
         </section>
 
-        <!-- Step 7: Hobbies -->
+        <!-- Step 7: Projects -->
+        <section class="form-step p-6 bg-white rounded-lg shadow-md">
+            <div class="max-w-2xl mx-auto space-y-4" id="projects-form-like">
+                <!-- Nom du projet & Entreprise -->
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <div class="flex-1">
+                        <label for="project-name" class="block mb-2 text-sm font-medium text-gray-900">Nom du projet</label>
+                        <input type="text" id="project-name" aria-label="Nom du projet"
+                               class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                               placeholder="Nom du projet" required/>
+                    </div>
+                    <div class="flex-1">
+                        <label for="project-company" class="block mb-2 text-sm font-medium text-gray-900">Entreprise</label>
+                        <input type="text" id="project-company" aria-label="Entreprise"
+                               class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                               placeholder="Entreprise" required/>
+                    </div>
+                </div>
+
+                <!-- Date -->
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <div class="flex-1">
+                        <label for="project-date" class="block mb-2 text-sm font-medium text-gray-900">Date</label>
+                        <input type="date" id="project-date" aria-label="Date"
+                               class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                               required/>
+                    </div>
+                    <div class="flex-1">
+                        <label for="project-link" class="block mb-2 text-sm font-medium text-gray-900">Lien du projet (optionnel)</label>
+                        <input type="url" id="project-link" aria-label="Lien du projet"
+                               class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                               placeholder="https://example.com"/>
+                    </div>
+                </div>
+
+                <!-- Description-->
+                <div>
+                    <label for="project-description" class="block mb-2 text-sm font-medium text-gray-900">Description (optionnelle)</label>
+                    <textarea id="project-description" aria-label="Description" rows="3"
+                              class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500"
+                              placeholder="Description de votre projet..."></textarea>
+                </div>
+
+                <!-- Buttons -->
+                <div class="flex flex-col sm:flex-row gap-2">
+                    <button type="button" aria-label="Ajouter ou Modifier" id="project-save-button"
+                            class="flex items-center justify-center gap-2 px-4 py-2.5 text-sm font-medium text-white bg-blue-700 rounded-lg border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 640 640">
+                            <path fill="#ffffff"
+                                  d="M352 128C352 110.3 337.7 96 320 96C302.3 96 288 110.3 288 128L288 288L128 288C110.3 288 96 302.3 96 320C96 337.7 110.3 352 128 352L288 352L288 512C288 529.7 302.3 544 320 544C337.7 544 352 529.7 352 512L352 352L512 352C529.7 352 544 337.7 544 320C544 302.3 529.7 288 512 288L352 288L352 128z"/>
+                        </svg>
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="hidden" width="1em" height="1em"
+                             viewBox="0 0 24 24">
+                            <path fill="currentColor"
+                                  d="M21 7v12q0 .825-.587 1.413T19 21H5q-.825 0-1.412-.587T3 19V5q0-.825.588-1.412T5 3h12zm-9 11q1.25 0 2.125-.875T15 15t-.875-2.125T12 12t-2.125.875T9 15t.875 2.125T12 18m-6-8h9V6H6z"/>
+                        </svg>
+                    </button>
+
+                    <button type="button" aria-label="Annuler" id="project-clear-button"
+                            class="flex items-center justify-center gap-2 px-4 py-2.5 text-sm font-medium text-white bg-gray-700 rounded-lg border border-gray-700 hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-gray-300">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 640 640">
+                            <path fill="#ffffff"
+                                  d="M431.2 476.5L163.5 208.8C141.1 240.2 128 278.6 128 320C128 426 214 512 320 512C361.5 512 399.9 498.9 431.2 476.5zM476.5 431.2C498.9 399.8 512 361.4 512 320C512 214 426 128 320 128C278.5 128 240.1 141.1 208.8 163.5L476.5 431.2zM64 320C64 178.6 178.6 64 320 64C461.4 64 576 178.6 576 320C576 461.4 461.4 576 320 576C178.6 576 64 461.4 64 320z"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Projects List -->
+            <div class="mt-6 max-w-2xl mx-auto">
+                <ul class="space-y-3" id="projects-container">
+                    <!-- Project items -->
+                </ul>
+            </div>
+        </section>
+
+        <!-- Step 8: Hobbies -->
         <section class="form-step p-6 bg-white rounded-lg shadow-md">
             <div class="mb-6">
                 <h2 class="text-lg font-medium text-gray-900 mb-3">Loisirs</h2>
@@ -559,7 +643,7 @@
             </div>
         </section>
 
-        <!-- Step 8: Certifications -->
+        <!-- Step 9: Certifications -->
         <section class="form-step p-6 bg-white rounded-lg shadow-md">
             <div class="max-w-2xl mx-auto space-y-4" id="certifications-form-like">
                 <!-- Nom & Organisation -->

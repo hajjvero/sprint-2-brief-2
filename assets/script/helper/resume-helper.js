@@ -24,6 +24,7 @@ export let resumeObjet = {
     languages: [],
     education: [],
     experience: [],
+    projects: [],
     hobbies: [],
     certifications: []
 }
