@@ -18,6 +18,7 @@ import initSoftSkills, {renderSoftSkills} from "./components/skills/soft-skills.
 import initLanguages, {renderLanguages} from "./components/language.js";
 import initEducation, {renderEducation} from "./components/education.js";
 import initExperience, {renderExperience} from "./components/experience.js";
+import initHobbies, {renderHobbies} from "./components/hobbies.js";
 
 // ===========================================
 //                  Variables
@@ -177,6 +178,9 @@ const renderResume = () => {
 
     // Experience
     renderExperience();
+    
+    // Hobbies
+    renderHobbies();
 };
 
 // ===========================================
@@ -201,6 +205,8 @@ function run() {
 
     initEducation();
     initExperience();
+    
+    initHobbies();
 
     // display next button and on start app
     if (currentSection === sections.length - 1) {

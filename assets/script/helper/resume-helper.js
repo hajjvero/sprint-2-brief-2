@@ -23,7 +23,8 @@ export let resumeObjet = {
     },
     languages: [],
     education: [],
-    experience: []
+    experience: [],
+    hobbies: []
 }
 
 export const saveResume = () => {
