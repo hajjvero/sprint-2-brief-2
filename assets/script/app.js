@@ -96,7 +96,8 @@ buttonPrevious.addEventListener("click", (e) => {
         e.target.classList.add("hidden");
     }
 
-    // save current sectionsaveCurrentSection();
+    // save current section
+    saveCurrentSection();
 })
 
 /*
