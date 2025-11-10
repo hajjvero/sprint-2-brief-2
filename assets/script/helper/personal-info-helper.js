@@ -2,7 +2,9 @@ import {resumeObjet} from "./resume-helper.js";
 
 // Photo upload
 export const previewPhoto = document.getElementById("preview-photo");
+export const deletePhoto = document.getElementById("delete-photo");
 export const uploadPhotoContainer = document.getElementById("upload-photo-container");
+export const previewPhotoContainer = document.getElementById("preview-photo-container");
 // Inputs
 export const inputPhoto = document.getElementById('photo');
 export const inputFullName = document.getElementById('fullName');
@@ -21,18 +23,30 @@ inputPhoto.addEventListener('change', (e) => {
     const file = e.target.files[0]; // get first file selected
     if (file) {
         uploadPhotoContainer.classList.add("hidden");
-        previewPhoto.classList.remove("hidden");
+        previewPhotoContainer.classList.remove("hidden");
+        deletePhoto.classList.remove("hidden");
 
-        const photoURL = URL.createObjectURL(file);
-        previewPhoto.src = photoURL;
-
-        resumeObjet.personal.phone = photoURL;
+        const reader = new FileReader();
+        reader.onload = () => {
+            previewPhoto.src = reader.result; // show preview
+            resumeObjet.personal.photo = reader.result;
+        }
+        reader.readAsDataURL(file); // convert to base64
     }
 });
+
+deletePhoto.addEventListener('click', () => {
+    previewPhoto.src = "";
+    resumeObjet.personal.photo = null;
+    uploadPhotoContainer.classList.remove("hidden");
+    previewPhotoContainer.classList.add("hidden");
+    deletePhoto.classList.add("hidden");
+})
 
 // function to set personal info to resume objet
 export const updatePersonalInfoResume = () => {
     resumeObjet.personal = {
+        ...resumeObjet.personal,
         fullName: inputFullName.value.trim(),
         lastName: inputLastName.value.trim(),
         email: inputEmail.value.trim(),

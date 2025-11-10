@@ -1,12 +1,13 @@
 import {resumeObjet, loadResume, saveResume} from "./helper/resume-helper.js";
 import {errors, validate} from "./utils/validation.js";
 import {
+    deletePhoto,
     inputAddress,
     inputEmail,
     inputFullName, inputGithub,
     inputLastName, inputLinkedin, inputNationality,
     inputPhone,
-    inputPortfolio, inputStatus, previewPhoto, updatePersonalInfoResume, uploadPhotoContainer
+    inputPortfolio, inputStatus, previewPhoto, previewPhotoContainer, updatePersonalInfoResume, uploadPhotoContainer
 } from "./helper/personal-info-helper.js";
 import {
     inputJobTitle,
@@ -154,10 +155,11 @@ const showSection = (order) => {
 const renderResume = () => {
     // Personal Information
     // part of photo
-    if (resumeObjet.personal.phone) {
+    if (resumeObjet.personal.photo) {
         uploadPhotoContainer.classList.add("hidden");
-        previewPhoto.classList.remove("hidden");
-        previewPhoto.src = resumeObjet.personal.phone;
+        previewPhotoContainer.classList.remove("hidden");
+        deletePhoto.classList.remove("hidden");
+        previewPhoto.src = resumeObjet.personal.photo;
     }
 
     inputFullName.value = resumeObjet.personal.fullName;
