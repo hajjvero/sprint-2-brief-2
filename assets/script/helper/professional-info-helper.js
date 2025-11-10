@@ -1,13 +1,15 @@
 import {resumeObjet} from "./resume-helper.js";
+import {initQuillEditor} from "../../lib/quill.js";
+
+export const editorProfileSummary = initQuillEditor("#profileSummary", resumeObjet.professional.profileSummary);
 
 // Inputs
 export const inputJobTitle = document.getElementById('jobTitle');
-export const inputProfileSummary = document.getElementById('profileSummary');
 
 // function to set professional info to resume objet
 export const updateProfessionalInfoResume = () => {
     resumeObjet.professional = {
         jobTitle: inputJobTitle.value.trim(),
-        profileSummary: inputProfileSummary.value.trim()
+        profileSummary: editorProfileSummary.getSemanticHTML(),
     };
 }

@@ -8,7 +8,7 @@ import {
 } from "../helper/personal-info-helper.js";
 import {
     inputJobTitle,
-    inputProfileSummary
+    editorProfileSummary
 } from "../helper/professional-info-helper.js";
 
 // list of errors objects  {element: htmlElement, message: "error message"}
@@ -109,9 +109,9 @@ export function validate(order) {
                 });
             }
 
-            if (isEmpty(inputProfileSummary.value.trim()) || !isRange(inputProfileSummary.value.trim().length, 40, 1000)) {
+            if (isEmpty(editorProfileSummary.getText()) || !isRange(editorProfileSummary.getText().length, 40, 1000)) {
                 errors.push({
-                    element: inputProfileSummary,
+                    element: editorProfileSummary.container,
                     message: "Ce champ est requis et doit contenir entre 40 et 1000 caractères. Exemple : 'Développeur web avec 5 ans d'expérience dans la création d'applications front-end et back-end."
                 });
             }

@@ -15,9 +15,11 @@
 
     <!-- stylesheet -->
     <link rel="stylesheet" href="assets/style/app.css">
+    <link href="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.snow.css" rel="stylesheet">
 
     <!-- javascript -->
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <script src="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.js"></script>
     <script src="assets/script/app.js" type="module"></script>
 </head>
 <body>
@@ -244,8 +246,7 @@
             <div>
                 <label for="profileSummary" class="block mb-2 text-sm font-medium text-gray-900">Résumé du
                     profil</label>
-                <textarea id="profileSummary" rows="4"
-                          class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500"></textarea>
+                <div id="profileSummary"></div>
             </div>
         </section>
 

@@ -11,7 +11,7 @@ import {
 } from "./helper/personal-info-helper.js";
 import {
     inputJobTitle,
-    inputProfileSummary,
+    editorProfileSummary,
     updateProfessionalInfoResume
 } from "./helper/professional-info-helper.js";
 import initHardSkills, {renderHardSkills} from "./components/skills/hard-skills.js";
@@ -22,6 +22,7 @@ import initExperience, {renderExperience} from "./components/experience.js";
 import initHobbies, {renderHobbies} from "./components/hobbies.js";
 import initCertifications, {renderCertifications} from "./components/certifications.js";
 import initProjects, {renderProjects} from "./components/projects.js";
+import {initQuillEditor} from "../lib/quill.js";
 
 // ===========================================
 //                  Variables
@@ -175,7 +176,7 @@ const renderResume = () => {
 
     // Professional Details
     inputJobTitle.value = resumeObjet.professional.jobTitle;
-    inputProfileSummary.value = resumeObjet.professional.profileSummary;
+    editorProfileSummary.clipboard.dangerouslyPasteHTML(resumeObjet.professional.profileSummary);
 
     // Skills
     renderHardSkills();
