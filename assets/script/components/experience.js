@@ -1,5 +1,6 @@
 import {displayError, removeError, isEmpty} from "../utils/validation.js";
 import {resumeObjet} from "../helper/resume-helper.js";
+import {initQuillEditor} from "../../lib/quill.js";
 
 // Variables
 const experienceContainer = document.getElementById('experience-container');
@@ -9,7 +10,7 @@ const inputExperiencePosition = document.getElementById('experience-position');
 const inputExperienceCompany = document.getElementById('experience-company');
 const inputExperienceStartDate = document.getElementById('experience-start-date');
 const inputExperienceEndDate = document.getElementById('experience-end-date');
-const inputExperienceDescription = document.getElementById('experience-description');
+const editExperienceDescription = initQuillEditor("#experience-description");
 
 const buttonExperienceSave = document.getElementById("experience-save-button");
 const buttonExperienceClear = document.getElementById("experience-clear-button");
@@ -50,7 +51,7 @@ const addExperience = () => {
         company: inputExperienceCompany.value.trim(),
         startDate: inputExperienceStartDate.value,
         endDate: inputExperienceEndDate.value || null,
-        description: inputExperienceDescription.value.trim()
+        description: editExperienceDescription.getSemanticHTML()
     });
     renderExperience();
 }
@@ -62,7 +63,7 @@ const editExperience = (index) => {
     inputExperienceCompany.value = resumeObjet.experience[index].company;
     inputExperienceStartDate.value = resumeObjet.experience[index].startDate;
     inputExperienceEndDate.value = resumeObjet.experience[index].endDate;
-    inputExperienceDescription.value = resumeObjet.experience[index].description;
+    editExperienceDescription.clipboard.dangerouslyPasteHTML(resumeObjet.experience[index].description);
 
     buttonExperienceSave.firstElementChild.classList.add('hidden');
     buttonExperienceSave.lastElementChild.classList.remove('hidden');
@@ -81,7 +82,7 @@ const updateExperience = (index) => {
         company: inputExperienceCompany.value.trim(),
         startDate: inputExperienceStartDate.value,
         endDate: inputExperienceEndDate.value || null,
-        description: inputExperienceDescription.value.trim()
+        description: editExperienceDescription.getSemanticHTML()
     };
     renderExperience();
 }
@@ -135,7 +136,7 @@ const showExperience = (experience, index) => {
     if (experience.description) {
         const descriptionP = document.createElement('p');
         descriptionP.setAttribute('class', 'mt-2 text-sm text-gray-700');
-        descriptionP.textContent = experience.description;
+        descriptionP.innerHTML = experience.description;
         contentDiv.append(descriptionP);
     }
 
@@ -186,7 +187,7 @@ const clearInput = () => {
     inputExperienceCompany.value = "";
     inputExperienceStartDate.value = "";
     inputExperienceEndDate.value = "";
-    inputExperienceDescription.value = "";
+    editExperienceDescription.setText("");
     experienceFormLike.removeAttribute("data-experience-id");
     buttonExperienceSave.firstElementChild.classList.remove('hidden');
     buttonExperienceSave.lastElementChild.classList.add('hidden');
@@ -220,5 +221,5 @@ const clearErrors = () => {
     removeError(inputExperienceCompany);
     removeError(inputExperienceStartDate);
     removeError(inputExperienceEndDate);
-    removeError(inputExperienceDescription);
+    removeError(editExperienceDescription.container);
 }

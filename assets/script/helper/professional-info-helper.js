@@ -1,7 +1,7 @@
 import {resumeObjet} from "./resume-helper.js";
 import {initQuillEditor} from "../../lib/quill.js";
 
-export const editorProfileSummary = initQuillEditor("#profileSummary", resumeObjet.professional.profileSummary);
+export const editorProfileSummary = initQuillEditor("#profileSummary");
 
 // Inputs
 export const inputJobTitle = document.getElementById('jobTitle');
