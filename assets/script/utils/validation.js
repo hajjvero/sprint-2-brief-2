@@ -3,7 +3,7 @@ import {
     inputEmail,
     inputFullName, inputGithub,
     inputLastName, inputLinkedin,
-    inputPhone,
+    inputPhone, inputPhoto,
     inputPortfolio
 } from "../helper/personal-info-helper.js";
 import {
@@ -80,6 +80,23 @@ export function validate(order) {
                 errors.push({
                     element: inputLinkedin,
                     message: "Veuillez entrer une URL LinkedIn valide. Exemple : 'https://linkedin.com/in/monprofil'"
+                });
+            }
+
+            // validation of photo
+            const file = inputPhoto.files[0];
+            if (file && !isInArray(file.type, inputPhoto.accept.split(',').map((type) => `image/${type.slice(1)}`))) {
+                errors.push({
+                    element: inputPhoto,
+                    message: "Type de fichier invalide. Formats autorisés : SVG, JPG, JPEG, PNG."
+                });
+            }
+
+            const MAX_SIZE_PHOTO = 5 * 1024 * 1024 // convert MB to BYTES
+            if (file && file.size > MAX_SIZE_PHOTO) {
+                errors.push({
+                    element: inputPhoto,
+                    message: "Le fichier est trop volumineux ! La taille maximale autorisée est de 5MB."
                 });
             }
             break;

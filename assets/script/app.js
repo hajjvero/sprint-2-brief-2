@@ -6,7 +6,7 @@ import {
     inputFullName, inputGithub,
     inputLastName, inputLinkedin, inputNationality,
     inputPhone,
-    inputPortfolio, inputStatus, updatePersonalInfoResume
+    inputPortfolio, inputStatus, previewPhoto, updatePersonalInfoResume, uploadPhotoContainer
 } from "./helper/personal-info-helper.js";
 import {
     inputJobTitle,
@@ -153,6 +153,13 @@ const showSection = (order) => {
 
 const renderResume = () => {
     // Personal Information
+    // part of photo
+    if (resumeObjet.personal.phone) {
+        uploadPhotoContainer.classList.add("hidden");
+        previewPhoto.classList.remove("hidden");
+        previewPhoto.src = resumeObjet.personal.phone;
+    }
+
     inputFullName.value = resumeObjet.personal.fullName;
     inputLastName.value = resumeObjet.personal.lastName;
     inputEmail.value = resumeObjet.personal.email;

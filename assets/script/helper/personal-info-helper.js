@@ -1,5 +1,8 @@
 import {resumeObjet} from "./resume-helper.js";
 
+// Photo upload
+export const previewPhoto = document.getElementById("preview-photo");
+export const uploadPhotoContainer = document.getElementById("upload-photo-container");
 // Inputs
 export const inputPhoto = document.getElementById('photo');
 export const inputFullName = document.getElementById('fullName');
@@ -12,6 +15,20 @@ export const inputStatus = document.getElementById('status');
 export const inputPortfolio = document.getElementById('portfolio');
 export const inputGithub = document.getElementById('github');
 export const inputLinkedin = document.getElementById('linkedin');
+
+// event to save image
+inputPhoto.addEventListener('change', (e) => {
+    const file = e.target.files[0]; // get first file selected
+    if (file) {
+        uploadPhotoContainer.classList.add("hidden");
+        previewPhoto.classList.remove("hidden");
+
+        const photoURL = URL.createObjectURL(file);
+        previewPhoto.src = photoURL;
+
+        resumeObjet.personal.phone = photoURL;
+    }
+});
 
 // function to set personal info to resume objet
 export const updatePersonalInfoResume = () => {
