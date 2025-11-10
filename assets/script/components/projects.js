@@ -1,5 +1,6 @@
 import {displayError, removeError, isEmpty, isURL} from "../utils/validation.js";
 import {resumeObjet} from "../helper/resume-helper.js";
+import {initQuillEditor} from "../../lib/quill.js";
 
 // Variables
 const projectsContainer = document.getElementById('projects-container');
@@ -9,7 +10,7 @@ const inputProjectName = document.getElementById('project-name');
 const inputProjectCompany = document.getElementById('project-company');
 const inputProjectDate = document.getElementById('project-date');
 const inputProjectLink = document.getElementById('project-link');
-const inputProjectDescription = document.getElementById('project-description');
+const editorProjectDescription = initQuillEditor("#project-description");
 
 const buttonProjectSave = document.getElementById("project-save-button");
 const buttonProjectClear = document.getElementById("project-clear-button");
@@ -50,7 +51,7 @@ const addProject = () => {
         company: inputProjectCompany.value.trim(),
         date: inputProjectDate.value,
         link: inputProjectLink.value.trim() || null,
-        description: inputProjectDescription.value.trim() || null
+        description: editorProjectDescription.getSemanticHTML() || null
     });
     renderProjects();
 }
@@ -62,7 +63,7 @@ const editProject = (index) => {
     inputProjectCompany.value = resumeObjet.projects[index].company;
     inputProjectDate.value = resumeObjet.projects[index].date;
     inputProjectLink.value = resumeObjet.projects[index].link || "";
-    inputProjectDescription.value = resumeObjet.projects[index].description || "";
+    editorProjectDescription.clipboard.dangerouslyPasteHTML(resumeObjet.projects[index].description || "");
 
     buttonProjectSave.firstElementChild.classList.add('hidden');
     buttonProjectSave.lastElementChild.classList.remove('hidden');
@@ -81,7 +82,7 @@ const updateProject = (index) => {
         company: inputProjectCompany.value.trim(),
         date: inputProjectDate.value,
         link: inputProjectLink.value.trim() || null,
-        description: inputProjectDescription.value.trim() || null
+        description: editorProjectDescription.getSemanticHTML() || null
     };
     renderProjects();
 }
@@ -132,7 +133,7 @@ const showProject = (project, index) => {
     if (project.description) {
         const descriptionP = document.createElement('p');
         descriptionP.setAttribute('class', 'mt-2 text-sm text-gray-700');
-        descriptionP.textContent = project.description;
+        descriptionP.innerHTML = project.description;
         contentDiv.append(descriptionP);
     }
 
@@ -198,7 +199,7 @@ const clearInput = () => {
     inputProjectCompany.value = "";
     inputProjectDate.value = "";
     inputProjectLink.value = "";
-    inputProjectDescription.value = "";
+    editorProjectDescription.setText("");
     projectsFormLike.removeAttribute("data-project-id");
     buttonProjectSave.firstElementChild.classList.remove('hidden');
     buttonProjectSave.lastElementChild.classList.add('hidden');
@@ -237,5 +238,5 @@ const clearErrors = () => {
     removeError(inputProjectCompany);
     removeError(inputProjectDate);
     removeError(inputProjectLink);
-    removeError(inputProjectDescription);
+    removeError(editorProjectDescription.container);
 }
