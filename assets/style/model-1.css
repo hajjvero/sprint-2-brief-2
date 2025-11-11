@@ -1,0 +1,217 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background: #f5f5f5;
+    padding: 20px;
+}
+
+.container {
+    max-width: 850px;
+    margin: 0 auto;
+    background: white;
+    padding: 50px 60px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.1);
+}
+
+header {
+    text-align: center;
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid #2c3e50;
+}
+
+h1 {
+    font-size: 32px;
+    margin-bottom: 11px;
+    color: #2c3e50;
+}
+
+.contact-info {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    font-size: 14px;
+    color: #555;
+}
+
+.contact-info a {
+    color: #2980b9;
+    text-decoration: none;
+}
+
+.contact-info a:hover {
+    text-decoration: underline;
+}
+
+.contact-info span:not(:last-child)::after {
+    content: "|";
+    margin-left: 15px;
+    color: #ccc;
+}
+
+section {
+    margin-bottom: 30px;
+}
+
+h2 {
+    font-size: 20px;
+    color: #2c3e50;
+    margin-bottom: 15px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #ddd;
+}
+
+.summary p {
+    text-align: justify;
+    color: #555;
+}
+
+.summary a {
+    color: #2980b9;
+}
+
+.job, .project, .education-item, .publication {
+    margin-bottom: 20px;
+}
+
+.job-header, .project-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 8px;
+}
+
+.job-title, .project-title {
+    font-weight: 600;
+    font-size: 16px;
+    color: #2c3e50;
+}
+
+.job-date {
+    font-size: 14px;
+    color: #7f8c8d;
+    font-style: italic;
+}
+
+.job-description, .project-description {
+    color: #555;
+    text-align: justify;
+}
+
+.job-description ul {
+    margin-left: 20px;
+    margin-top: 8px;
+}
+
+.job-description li {
+    margin-bottom: 5px;
+}
+
+.project-link {
+    font-size: 14px;
+    margin-left: 10px;
+}
+
+.project-link a {
+    color: #2980b9;
+    text-decoration: none;
+}
+
+.project-link a:hover {
+    text-decoration: underline;
+}
+
+.education-item {
+    display: flex;
+    gap: 15px;
+}
+
+.education-year {
+    min-width: 100px;
+    font-weight: 600;
+    color: #2c3e50;
+}
+
+.education-details {
+    flex: 1;
+    color: #555;
+}
+
+.publication {
+    text-align: justify;
+    color: #555;
+    padding-left: 20px;
+    text-indent: -20px;
+}
+
+.publication a {
+    color: #2980b9;
+    text-decoration: none;
+}
+
+.publication a:hover {
+    text-decoration: underline;
+}
+
+.skills-item {
+    margin-bottom: 10px;
+}
+
+.skill-category {
+    font-weight: 600;
+    color: #2c3e50;
+    display: inline;
+}
+
+.skill-list {
+    display: inline;
+    color: #555;
+}
+
+footer {
+    text-align: center;
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid #ddd;
+    font-size: 12px;
+    color: #999;
+}
+
+@media print {
+    body {
+        background: white;
+        padding: 0;
+    }
+    .container {
+        box-shadow: none;
+        padding: 0;
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 30px 20px;
+    }
+
+    .job-header, .project-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .contact-info {
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    .contact-info span::after {
+        display: none;
+    }
+}
