@@ -22,6 +22,7 @@ import initExperience, {renderExperience} from "./components/experience.js";
 import initHobbies, {renderHobbies} from "./components/hobbies.js";
 import initCertifications, {renderCertifications} from "./components/certifications.js";
 import initProjects, {renderProjects} from "./components/projects.js";
+import {initModelCvLogic} from "./model/model.js";
 
 // ===========================================
 //                  Variables
@@ -233,6 +234,8 @@ function run() {
     initProjects();
     
     initCertifications();
+
+    initModelCvLogic();
 
     // display next button and on start app
     if (currentSection === sections.length - 1) {
