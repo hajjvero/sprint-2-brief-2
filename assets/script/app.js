@@ -22,7 +22,6 @@ import initExperience, {renderExperience} from "./components/experience.js";
 import initHobbies, {renderHobbies} from "./components/hobbies.js";
 import initCertifications, {renderCertifications} from "./components/certifications.js";
 import initProjects, {renderProjects} from "./components/projects.js";
-import {initQuillEditor} from "../lib/quill.js";
 
 // ===========================================
 //                  Variables
@@ -35,6 +34,7 @@ const cvForm = document.getElementById("cv-form");
 // button next and previous
 const buttonPrevious = document.getElementById("button-previous");
 const buttonNext = document.getElementById("button-next");
+const buttonSave = document.getElementById("button-save");
 
 // section current
 let currentSection = 0;
@@ -74,6 +74,7 @@ buttonNext.addEventListener("click", (e) => {
         // logic of end section
         if (currentSection === sections.length - 1) {
             e.target.classList.add("hidden");
+            buttonSave.classList.remove("hidden");
         }
 
         // save information of section
@@ -95,6 +96,7 @@ buttonPrevious.addEventListener("click", (e) => {
     // display next button
     if (currentSection !== sections.length - 1) {
         buttonNext.classList.remove("hidden");
+        buttonSave.classList.add("hidden");
     }
 
     if (currentSection === 0) {
@@ -110,6 +112,8 @@ buttonPrevious.addEventListener("click", (e) => {
  */
 cvForm.addEventListener('submit', (e) => {
     e.preventDefault();
+
+    saveResume();
 })
 
 // ===========================================
@@ -233,6 +237,7 @@ function run() {
     // display next button and on start app
     if (currentSection === sections.length - 1) {
         buttonNext.classList.add("hidden");
+        buttonSave.classList.remove("hidden");
     }
 
     if (currentSection !== 0) {
