@@ -21,10 +21,32 @@ body {
 }
 
 header {
-    text-align: center;
     margin-bottom: 30px;
     padding-bottom: 20px;
     border-bottom: 2px solid #2c3e50;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Name and job title on the left */
+.name-title-container {
+    flex: 1;
+    text-align: left;
+}
+
+/* Photo on the right */
+.photo-container {
+    margin-left: 20px;
+}
+
+.cv-photo {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #2c3e50;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
 }
 
 h1 {
@@ -33,13 +55,19 @@ h1 {
     color: #2c3e50;
 }
 
+h2 {
+    font-size: 26px;
+    margin-bottom: 15px;
+    color: #34495e;
+}
+
 .contact-info {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
     gap: 15px;
     font-size: 14px;
     color: #555;
+    justify-content: flex-start;
 }
 
 .contact-info a {
@@ -200,6 +228,25 @@ footer {
     .container {
         padding: 30px 20px;
     }
+    
+    header {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .name-title-container {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    
+    .photo-container {
+        margin-left: 0;
+    }
+    
+    .cv-photo {
+        width: 120px;
+        height: 120px;
+    }
 
     .job-header, .project-header {
         flex-direction: column;
@@ -207,11 +254,30 @@ footer {
     }
 
     .contact-info {
-        flex-direction: column;
+        justify-content: center;
         gap: 5px;
     }
 
     .contact-info span::after {
         display: none;
+    }
+}
+
+@media (max-width: 480px) {
+    .cv-photo {
+        width: 100px;
+        height: 100px;
+    }
+    
+    .container {
+        padding: 20px 15px;
+    }
+    
+    h1 {
+        font-size: 26px;
+    }
+    
+    h2 {
+        font-size: 22px;
     }
 }

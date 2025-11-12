@@ -3,6 +3,7 @@ import {loadResume, resumeObjet} from "../helper/resume-helper.js";
 function fillHeader() {
     const jobTitle = document.getElementById("jobTitle");
     const fullName = document.getElementById("fullName");
+    const profilePhoto = document.getElementById("profilePhoto");
 
     if (resumeObjet.professional.jobTitle) {
         jobTitle.innerText = resumeObjet.professional.jobTitle;
@@ -12,6 +13,19 @@ function fillHeader() {
         fullName.innerText = `${resumeObjet.personal.fullName} ${resumeObjet.personal.lastName}`;
     } else if (resumeObjet.personal.fullName) {
         fullName.innerText = resumeObjet.personal.fullName;
+    }
+
+    // Handle photo display
+    if (resumeObjet.personal.photo) {
+        profilePhoto.src = resumeObjet.personal.photo;
+        profilePhoto.style.display = "block";
+    } else {
+        // If no photo, hide the photo container
+        profilePhoto.parentElement.style.display = "none";
+        // Adjust header layout to single column when no photo
+        const header = document.getElementById("cv-header");
+        header.style.flexDirection = "column";
+        header.style.textAlign = "center";
     }
 
     const contactInfo = document.getElementById("contactInfo");
