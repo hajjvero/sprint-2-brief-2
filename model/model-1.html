@@ -5,7 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Your Name - CV</title>
     <link rel="stylesheet" href="../assets/style/model-1.css">
-<script src="../assets/script/model/model-1.js" defer type="module"></script>
+    <!-- Include jsPDF and html2canvas CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="../assets/script/model/model-1.js" defer type="module"></script>
 </head>
 <body>
 <div class="container">
@@ -61,10 +64,108 @@
 
         <!-- Skills will be populated here -->
     </section>
-
-    <footer>
-        Last updated: <span id="lastUpdated"></span>
-    </footer>
 </div>
+
+<footer>
+    <button type="button" class="pdf-button" id="downloadPdf">
+        <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 15 15"><path fill="currentColor" d="M3.5 8H3V7h.5a.5.5 0 0 1 0 1M7 10V7h.5a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.5.5z"/><path fill="currentColor" fill-rule="evenodd" d="M1 1.5A1.5 1.5 0 0 1 2.5 0h8.207L14 3.293V13.5a1.5 1.5 0 0 1-1.5 1.5h-10A1.5 1.5 0 0 1 1 13.5zM3.5 6H2v5h1V9h.5a1.5 1.5 0 1 0 0-3m4 0H6v5h1.5A1.5 1.5 0 0 0 9 9.5v-2A1.5 1.5 0 0 0 7.5 6m2.5 5V6h3v1h-2v1h1v1h-1v2z" clip-rule="evenodd"/></svg>
+        View PDF
+    </button>
+</footer>
+
+<div id="pdf-viewer" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 1000; justify-content: center; align-items: center;">
+    <div style="background: white; width: 90%; height: 90%; display: flex; flex-direction: column;">
+        <div style="display: flex; justify-content: space-between; padding: 10px; background: #f0f0f0;">
+            <h3>CV Preview</h3>
+            <button id="closePdf" style="background: #dc3545; color: white; border: none; padding: 5px 10px; cursor: pointer; border-radius: 3px;">Close</button>
+        </div>
+        <iframe id="pdf-iframe" style="flex: 1; width: 100%; border: none;"></iframe>
+    </div>
+</div>
+
+<!--<script>-->
+<!--// Add PDF generation functionality using jsPDF-->
+<!--document.getElementById('downloadPdf').addEventListener('click', function() {-->
+<!--    // Show loading state-->
+<!--    const button = this;-->
+<!--    const originalText = button.innerHTML;-->
+<!--    button.innerHTML = 'Generating PDF...';-->
+<!--    button.disabled = true;-->
+<!--    -->
+<!--    // Get the container element-->
+<!--    const element = document.querySelector('.container');-->
+<!--    -->
+<!--    // Use html2canvas to capture the element-->
+<!--    html2canvas(element, {-->
+<!--        scale: 2, // Higher quality-->
+<!--        useCORS: true,-->
+<!--        logging: false-->
+<!--    }).then(canvas => {-->
+<!--        // Get the jsPDF library from the global scope-->
+<!--        const { jsPDF } = window.jspdf;-->
+<!--        -->
+<!--        // Create a new jsPDF instance-->
+<!--        const doc = new jsPDF({-->
+<!--            orientation: 'portrait',-->
+<!--            unit: 'px',-->
+<!--            format: 'a4'-->
+<!--        });-->
+<!--        -->
+<!--        // Calculate dimensions-->
+<!--        const imgData = canvas.toDataURL('image/png');-->
+<!--        const pageWidth = doc.internal.pageSize.getWidth();-->
+<!--        const pageHeight = doc.internal.pageSize.getHeight();-->
+<!--        const imgWidth = pageWidth;-->
+<!--        const imgHeight = canvas.height * imgWidth / canvas.width;-->
+<!--        -->
+<!--        // Handle multi-page-->
+<!--        let heightLeft = imgHeight;-->
+<!--        let position = 0;-->
+<!--        -->
+<!--        doc.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);-->
+<!--        heightLeft -= pageHeight;-->
+<!--        -->
+<!--        // Add extra pages if needed-->
+<!--        while (heightLeft >= 0) {-->
+<!--            position = heightLeft - imgHeight;-->
+<!--            doc.addPage();-->
+<!--            doc.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);-->
+<!--            heightLeft -= pageHeight;-->
+<!--        }-->
+<!--        -->
+<!--        // Convert PDF to blob and display in browser-->
+<!--        const blob = doc.output('blob');-->
+<!--        const url = URL.createObjectURL(blob);-->
+<!--        -->
+<!--        // Display PDF in iframe-->
+<!--        document.getElementById('pdf-iframe').src = url;-->
+<!--        document.getElementById('pdf-viewer').style.display = 'flex';-->
+<!--        -->
+<!--        // Restore button-->
+<!--        button.innerHTML = originalText;-->
+<!--        button.disabled = false;-->
+<!--    }).catch(error => {-->
+<!--        console.error('Error generating PDF:', error);-->
+<!--        // Restore button-->
+<!--        button.innerHTML = originalText;-->
+<!--        button.disabled = false;-->
+<!--        alert('Error generating PDF. Please try again.');-->
+<!--    });-->
+<!--});-->
+
+<!--// Close PDF viewer-->
+<!--document.getElementById('closePdf').addEventListener('click', function() {-->
+<!--    document.getElementById('pdf-viewer').style.display = 'none';-->
+<!--    document.getElementById('pdf-iframe').src = '';-->
+<!--});-->
+
+<!--// Close PDF viewer when clicking outside the content-->
+<!--document.getElementById('pdf-viewer').addEventListener('click', function(e) {-->
+<!--    if (e.target === this) {-->
+<!--        this.style.display = 'none';-->
+<!--        document.getElementById('pdf-iframe').src = '';-->
+<!--    }-->
+<!--});-->
+<!--</script>-->
 </body>
 </html>
