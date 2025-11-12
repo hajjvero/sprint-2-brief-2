@@ -42,7 +42,7 @@ export default function initExperience() {
 
 export const renderExperience = () => {
     experienceContainer.innerHTML = "";
-    experienceContainer.append(...resumeObjet.experience.map(showExperience));
+    experienceContainer.append(...resumeObjet.experience.sort((a, b) => new Date(b.startDate) - new Date(a.startDate)).map(showExperience));
 }
 
 const addExperience = () => {

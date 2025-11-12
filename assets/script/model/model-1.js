@@ -58,7 +58,7 @@ function fillExperience() {
     if (resumeObjet.experience && resumeObjet.experience.length > 0) {
         let experienceHTML = '<h2>Work Experience</h2>';
         
-        resumeObjet.experience.forEach(exp => {
+        resumeObjet.experience.sort((a, b) => new Date(b.startDate) - new Date(a.startDate)).forEach(exp => {
             const startDate = exp.startDate ? formatDate(exp.startDate) : '';
             const endDate = exp.endDate ? formatDate(exp.endDate) : 'Present';
             const dateRange = startDate && endDate ? `${startDate} - ${endDate}` : '';
@@ -86,7 +86,7 @@ function fillProjects() {
     if (resumeObjet.projects && resumeObjet.projects.length > 0) {
         let projectsHTML = '<h2>Projects</h2>';
         
-        resumeObjet.projects.forEach(project => {
+        resumeObjet.projects.sort((a, b) => new Date(b.date) - new Date(a.date)).forEach(project => {
             projectsHTML += `
                 <div class="project">
                     <div class="project-header">
@@ -112,7 +112,7 @@ function fillEducation() {
         
         resumeObjet.education.forEach(edu => {
             const startYear = edu.startYear || '';
-            const endYear = edu.endYear || '';
+            const endYear = edu.endYear || 'Present';
             const yearRange = startYear && endYear ? `${startYear} - ${endYear}` : (startYear || endYear || '');
             
             educationHTML += `
@@ -135,7 +135,7 @@ function fillPublications() {
     if (resumeObjet.certifications && resumeObjet.certifications.length > 0) {
         let publicationsHTML = '<h2>Certifications</h2>'; // Changed section title to better reflect content
         
-        resumeObjet.certifications.forEach(cert => {
+        resumeObjet.certifications.sort((a, b) => new Date(b.date) - new Date(a.date)).forEach(cert => {
             publicationsHTML += `
                 <div class="publication">
                     <p><strong>${cert.name || ''}</strong> - ${cert.organization || ''}
@@ -191,7 +191,7 @@ function fillSkills() {
 function formatDate(dateString) {
     if (!dateString) return '';
     const date = new Date(dateString);
-    return isNaN(date.getTime()) ? dateString : date.toLocaleDateString('en-US', { 
+    return isNaN(date.getTime()) ? dateString : date.toLocaleDateString('fr', {
         year: 'numeric', 
         month: 'short' 
     });

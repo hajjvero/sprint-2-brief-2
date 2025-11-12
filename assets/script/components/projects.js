@@ -42,7 +42,7 @@ export default function initProjects() {
 
 export const renderProjects = () => {
     projectsContainer.innerHTML = "";
-    projectsContainer.append(...resumeObjet.projects.map(showProject));
+    projectsContainer.append(...resumeObjet.projects.sort((a, b) => new Date(b.date) - new Date(a.date)).map(showProject));
 }
 
 const addProject = () => {

@@ -40,7 +40,7 @@ export default function initCertifications() {
 
 export const renderCertifications = () => {
     certificationsContainer.innerHTML = "";
-    certificationsContainer.append(...resumeObjet.certifications.map(showCertification));
+    certificationsContainer.append(...resumeObjet.certifications.sort((a, b) => new Date(b.date) - new Date(a.date)).map(showCertification));
 }
 
 const addCertification = () => {

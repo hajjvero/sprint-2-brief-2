@@ -41,7 +41,7 @@ export default function initEducation() {
 
 export const renderEducation = () => {
     educationContainer.innerHTML = "";
-    educationContainer.append(...resumeObjet.education.map(showEducation));
+    educationContainer.append(...resumeObjet.education.sort((a, b) => new Date(a.endYear) - new Date(b.endYear)).map(showEducation));
 }
 
 const addEducation = () => {
@@ -129,9 +129,7 @@ const showEducation = (education, index) => {
     // Date with icon
     const dateSpan = document.createElement('span');
     dateSpan.setAttribute('class', 'flex items-center gap-1');
-    const dateText = education.endYear
-        ? `${education.startYear} - ${education.endYear}`
-        : education.startYear;
+    const dateText = `${education.startYear} - ${education.endYear ? education.endYear : 'Present'}`;
     dateSpan.innerHTML = `
         <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
