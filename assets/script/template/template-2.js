@@ -176,6 +176,15 @@ function fillLanguages() {
     }
 }
 
+function fillHobbies() {
+    const hobbiesSection = document.querySelector('.hobbies');
+
+    hobbiesSection.innerHTML = resumeObjet.hobbies.map(hobby =>
+        `<span class="strength-tag">${hobby}</span>`
+    ).join('');
+
+}
+
 function fillPublications() {
     const publicationsSection = document.querySelector('.publications');
     if (!publicationsSection) return;
@@ -245,6 +254,8 @@ function initCV() {
     fillLanguages();
     fillPublications();
     fillProjects();
+    
+    fillHobbies();
 
     // click to dowload
     const downloadPdf = document.getElementById("downloadPdf");
