@@ -189,6 +189,24 @@ function fillSkills() {
     }
 }
 
+function fillHobbies() {
+    const hobbiesSection = document.querySelector('.hobbies');
+    if ((resumeObjet.hobbies && resumeObjet.hobbies.length > 0)) {
+        let hobbiesHTML = '<h2>Loisirs</h2>';
+
+        if (resumeObjet.hobbies && resumeObjet.hobbies.length > 0) {
+            const hobbies = resumeObjet.hobbies.map(hobby => hobby).join(', ');
+            hobbiesHTML += `
+                <div class="skills-item">
+                    <span class="skill-list"> ${hobbies}</span>
+                </div>
+            `;
+        }
+
+        hobbiesSection.innerHTML = hobbiesHTML;
+    }
+}
+
 function formatDate(dateString) {
     if (!dateString) return '';
     const date = new Date(dateString);
@@ -208,6 +226,7 @@ function initCV() {
     fillEducation();
     fillPublications();
     fillSkills();
+    fillHobbies();
 
     // click to dowload
     const downloadPdf = document.getElementById("downloadPdf");
