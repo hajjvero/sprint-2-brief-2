@@ -22,6 +22,7 @@ import initExperience, {renderExperience} from "./components/experience.js";
 import initHobbies, {renderHobbies} from "./components/hobbies.js";
 import initCertifications, {renderCertifications} from "./components/certifications.js";
 import initProjects, {renderProjects} from "./components/projects.js";
+import {renderPDF, renderPDFJson} from "../lib/pdf.js";
 
 // ===========================================
 //                  Variables
@@ -35,6 +36,7 @@ const cvForm = document.getElementById("cv-form");
 const buttonPrevious = document.getElementById("button-previous");
 const buttonNext = document.getElementById("button-next");
 const buttonSave = document.getElementById("button-save");
+const exportPdfButton = document.getElementById("export-pdf-button");
 
 // section current
 let currentSection = 0;
@@ -115,6 +117,17 @@ cvForm.addEventListener('submit', (e) => {
 
     saveResume();
 })
+
+/*
+ * Export to PDF event
+ */
+exportPdfButton.addEventListener('click', () => {
+    const cv = {...resumeObjet}
+    // remove image is large text
+    cv.personal.photo = null;
+    // Render as PDF
+    renderPDFJson(JSON.stringify(cv));
+});
 
 // ===========================================
 //            Progress bar functions

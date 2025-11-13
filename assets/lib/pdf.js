@@ -45,3 +45,46 @@ export const renderPDF = async (element) => {
     const pdfUrl = URL.createObjectURL(pdfBlob);
     window.open(pdfUrl, '_blank');
 };
+
+export const renderPDFJson = async (json) => {
+    const { jsPDF } = window.jspdf;
+
+    const pdf = new jsPDF({
+        orientation: 'portrait',
+        unit: 'pt',
+        format: 'a4'
+    });
+
+    const pageWidth = pdf.internal.pageSize.getWidth();
+    const pageHeight = pdf.internal.pageSize.getHeight();
+    const margin = 40;
+    const maxWidth = pageWidth - (margin * 2);
+
+    // Set font
+    pdf.setFont('courier');
+    pdf.setFontSize(10);
+    // color green
+    pdf.setTextColor(0, 128, 0);
+
+    // Split text into lines that fit the page width
+    const lines = pdf.splitTextToSize(json, maxWidth);
+
+    let yPosition = margin;
+    const lineHeight = 12;
+
+    lines.forEach((line, index) => {
+        // Check if we need a new page
+        if (yPosition + lineHeight > pageHeight - margin) {
+            pdf.addPage();
+            yPosition = margin;
+        }
+
+        pdf.text(line, margin, yPosition);
+        yPosition += lineHeight;
+    });
+
+    // Open in new tab
+    const pdfBlob = pdf.output('blob');
+    const pdfUrl = URL.createObjectURL(pdfBlob);
+    window.open(pdfUrl, '_blank');
+};
