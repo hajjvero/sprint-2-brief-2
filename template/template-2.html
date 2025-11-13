@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Name - CV</title>
+    <link rel="stylesheet" href="../assets/style/template-2.css">
+    <!-- Include jsPDF and html2canvas CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="../assets/script/template/template-2.js" type="module" defer></script>
+</head>
+<body>
+<div class="container">
+    <aside class="sidebar">
+        <div class="header">
+            <div style="text-align: center">
+                <img id="profilePhoto" class="cv-photo" src="" alt="Profile Photo">
+            </div>
+            <h1 class="full-name">YOUR NAME</h1>
+            <div class="contact-info">
+                @ <a href="mailto:email@example.com">email@example.com</a><br>
+                📞 Phone number<br>
+                📍 Address<br>
+                🔗 <a href="#">username</a><br>
+                💼 <a href="#">linkedin</a><br>
+                💻 <a href="#">github</a>
+            </div>
+        </div>
+
+        <div class="sidebar-section">
+            <h2>Technical Skills</h2>
+            <div class="skills-hard">
+                <span class="strength-tag">Hard-working (18/24)</span>
+                <span class="strength-tag">Persuasive</span>
+            </div>
+        </div>
+
+        <div class="sidebar-section">
+            <h2>Soft Skills</h2>
+            <div class="skills-soft">
+                <span class="strength-tag">Hard-working (18/24)</span>
+                <span class="strength-tag">Persuasive</span>
+            </div>
+        </div>
+
+        <div class="sidebar-section">
+            <h2>Languages</h2>
+            <div class="languages">
+                <div class="language-item">
+                    <span>English</span>
+                    <div class="language-dots">
+                        <span class="dot filled"></span>
+                        <span class="dot filled"></span>
+                        <span class="dot filled"></span>
+                        <span class="dot filled"></span>
+                        <span class="dot filled"></span>
+                    </div>
+                </div>
+                <div class="language-item">
+                    <span>Spanish</span>
+                    <div class="language-dots">
+                        <span class="dot filled"></span>
+                        <span class="dot filled"></span>
+                        <span class="dot filled"></span>
+                        <span class="dot filled"></span>
+                        <span class="dot filled"></span>
+                    </div>
+                </div>
+                <div class="language-item">
+                    <span>German</span>
+                    <div class="language-dots">
+                        <span class="dot filled"></span>
+                        <span class="dot filled"></span>
+                        <span class="dot filled"></span>
+                        <span class="dot"></span>
+                        <span class="dot"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </aside>
+
+    <main class="main-content">
+        <h1 class="job-title-global">Your Job Title</h1>
+
+        <section class="summary" style="margin-bottom: 16px">
+            <h2 class="main-title">Summary</h2>
+
+        </section>
+
+        <section class="experience">
+            <h2 class="main-title">Experience</h2>
+
+            <div class="job">
+                <div class="job-header">
+                    <div class="job-title-company">
+                        <div class="job-title">President & CEO</div>
+                        <div class="company">Yahoo!</div>
+                    </div>
+                    <div class="job-date-location">
+                        📅 July 2012 – Ongoing<br>
+                        * Sunnyvale, CA
+                    </div>
+                </div>
+                <div class="job-description">
+                    <ul>
+                        <li>Led the $5 billion acquisition of the company with Verizon – the entity which believed most in the immense value Yahoo! has created</li>
+                        <li>Acquired Tumblr for $1.1 billion and moved the company's blog there</li>
+                        <li>Built Yahoo's mobile, video and social businesses from nothing in 2011 to $1.6 billion in GAAP revenue in 2015</li>
+                        <li>Tripled the company's mobile base to over 600 million monthly active users and generated over $1 billion of mobile advertising revenue last year</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="education">
+            <h2 class="main-title">Education</h2>
+
+            <div class="education-item">
+                <div class="degree">M.S. in Computer Science</div>
+                <div class="university">Stanford University</div>
+                <div class="edu-date">📅 Sept 1997 – June 1999</div>
+            </div>
+        </section>
+
+        <section class="publications">
+            <h2 class="main-title">Publications</h2>
+
+            <h3>📚 Books</h3>
+            <div class="pub-item">E. Someone and T. Lim, <em>A Fictional Research</em>. Somewhere, Some Place, 2010.</div>
+
+            <h3>📄 Journal Articles</h3>
+            <div class="pub-item">L. T. Wong and E. Someone, "A non-existant paper," <em>Journal of Carrying On</em>, vol. 12, 2011.</div>
+            <div class="pub-item">L. T. Lim, E. Someone, and A. Other, "A study into fireside story-telling," <em>Journal of Carrying On</em>, vol. 7, 2008.</div>
+
+            <h3>🎤 Conference Proceedings</h3>
+            <div class="pub-item">E. Someone and L. T. Lim, "Another paper something something," in <em>Proceedings of the 72nd AmaZing Conference</em>, Far Far Away, 2013.</div>
+        </section>
+
+        <section class="projects">
+            <h2 class="main-title">Projects</h2>
+            <div class="job">
+                <div class="job-header">
+                    <div class="job-title-company">
+                        <div class="job-title">President & CEO</div>
+                        <div class="company">Yahoo!</div>
+                    </div>
+                    <div class="job-date-location">
+                        📅 July 2012 – Ongoing<br>
+                        * Sunnyvale, CA
+                    </div>
+                </div>
+                <div class="job-description">
+                    <ul>
+                        <li>Led the $5 billion acquisition of the company with Verizon – the entity which believed most in the immense value Yahoo! has created</li>
+                        <li>Acquired Tumblr for $1.1 billion and moved the company's blog there</li>
+                        <li>Built Yahoo's mobile, video and social businesses from nothing in 2011 to $1.6 billion in GAAP revenue in 2015</li>
+                        <li>Tripled the company's mobile base to over 600 million monthly active users and generated over $1 billion of mobile advertising revenue last year</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </main>
+</div>
+
+<footer>
+    <button type="button" class="pdf-button" id="downloadPdf">
+        <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 15 15"><path fill="currentColor" d="M3.5 8H3V7h.5a.5.5 0 0 1 0 1M7 10V7h.5a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.5.5z"/><path fill="currentColor" fill-rule="evenodd" d="M1 1.5A1.5 1.5 0 0 1 2.5 0h8.207L14 3.293V13.5a1.5 1.5 0 0 1-1.5 1.5h-10A1.5 1.5 0 0 1 1 13.5zM3.5 6H2v5h1V9h.5a1.5 1.5 0 1 0 0-3m4 0H6v5h1.5A1.5 1.5 0 0 0 9 9.5v-2A1.5 1.5 0 0 0 7.5 6m2.5 5V6h3v1h-2v1h1v1h-1v2z" clip-rule="evenodd"/></svg>
+        View PDF
+    </button>
+</footer>
+</body>
+</html>
